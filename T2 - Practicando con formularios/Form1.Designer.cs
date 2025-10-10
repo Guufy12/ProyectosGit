@@ -32,6 +32,9 @@
             label1 = new Label();
             label2 = new Label();
             btnLabel = new Button();
+            button1 = new Button();
+            textBox1 = new TextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -68,6 +71,34 @@
             btnLabel.UseVisualStyleBackColor = true;
             btnLabel.Click += button1_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(385, 161);
+            button1.Name = "button1";
+            button1.Size = new Size(128, 37);
+            button1.TabIndex = 3;
+            button1.Text = "PRESIONAR";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(377, 75);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(136, 23);
+            textBox1.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.AliceBlue;
+            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(377, 115);
+            label3.Name = "label3";
+            label3.Size = new Size(136, 25);
+            label3.TabIndex = 5;
+            label3.Text = "TXTBOX LABEL";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -75,6 +106,9 @@
             BackColor = Color.Blue;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             ClientSize = new Size(800, 450);
+            Controls.Add(label3);
+            Controls.Add(textBox1);
+            Controls.Add(button1);
             Controls.Add(btnLabel);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -90,5 +124,8 @@
         private Label label1;
         private Label label2;
         private Button btnLabel;
+        private Button button1;
+        private TextBox textBox1;
+        private Label label3;
     }
 }
