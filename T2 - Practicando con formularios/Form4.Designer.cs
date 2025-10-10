@@ -33,6 +33,8 @@
             button1 = new Button();
             label1 = new Label();
             button2 = new Button();
+            button3 = new Button();
+            label2 = new Label();
             SuspendLayout();
             // 
             // Universidades
@@ -81,12 +83,34 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(522, 123);
+            button3.Name = "button3";
+            button3.Size = new Size(92, 55);
+            button3.TabIndex = 5;
+            button3.Text = "CLICKEA";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(522, 80);
+            label2.Name = "label2";
+            label2.Size = new Size(81, 19);
+            label2.TabIndex = 6;
+            label2.Text = "CONTADOR";
+            // 
             // Form4
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DeepSkyBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(label1);
             Controls.Add(button1);
@@ -105,5 +129,7 @@
         private Button button1;
         private Label label1;
         private Button button2;
+        private Button button3;
+        private Label label2;
     }
 }

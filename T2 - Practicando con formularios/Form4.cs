@@ -26,5 +26,21 @@ namespace T2___Practicando_con_formularios
         {
             Universidades.Items.Clear();
         }
+        //contador de clicks, declarado desde fuera para que no afecte el conteo
+        int clicks = 0;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //El bucle fue innecesario
+
+            //bool clickeando = true;
+            //while (clickeando == true)
+           //{
+                clicks++;
+                label2.Text = clicks.ToString();
+                //clickeando = false;
+           //}
+
+
+        }
     }
 }
