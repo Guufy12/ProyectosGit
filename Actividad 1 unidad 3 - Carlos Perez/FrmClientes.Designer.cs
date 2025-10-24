@@ -71,16 +71,16 @@
             groupBox2.BackColor = Color.White;
             groupBox2.Controls.Add(btnMostrar);
             groupBox2.Controls.Add(dgvClientes);
-            groupBox2.Location = new Point(433, 12);
+            groupBox2.Location = new Point(438, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(450, 236);
+            groupBox2.Size = new Size(445, 326);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             groupBox2.Text = "LISTA CLIENTES";
             // 
             // btnMostrar
             // 
-            btnMostrar.Location = new Point(278, 196);
+            btnMostrar.Location = new Point(282, 276);
             btnMostrar.Name = "btnMostrar";
             btnMostrar.Size = new Size(106, 34);
             btnMostrar.TabIndex = 15;
@@ -94,7 +94,7 @@
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Location = new Point(17, 31);
             dgvClientes.Name = "dgvClientes";
-            dgvClientes.Size = new Size(412, 159);
+            dgvClientes.Size = new Size(412, 239);
             dgvClientes.TabIndex = 0;
             // 
             // groupBox3
@@ -104,9 +104,9 @@
             groupBox3.Controls.Add(txtEliminarCliente);
             groupBox3.Controls.Add(label10);
             groupBox3.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox3.Location = new Point(477, 302);
+            groupBox3.Location = new Point(438, 359);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(306, 107);
+            groupBox3.Size = new Size(429, 107);
             groupBox3.TabIndex = 3;
             groupBox3.TabStop = false;
             groupBox3.Text = "ELIMINAR CLIENTE";
@@ -155,14 +155,14 @@
             groupBox4.Font = new Font("Times New Roman", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox4.Location = new Point(12, 266);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(426, 234);
+            groupBox4.Size = new Size(410, 234);
             groupBox4.TabIndex = 4;
             groupBox4.TabStop = false;
             groupBox4.Text = "ACTUALIZAR DATOS";
             // 
             // txtActualizarClienteid
             // 
-            txtActualizarClienteid.Location = new Point(156, 54);
+            txtActualizarClienteid.Location = new Point(136, 54);
             txtActualizarClienteid.Name = "txtActualizarClienteid";
             txtActualizarClienteid.Size = new Size(143, 22);
             txtActualizarClienteid.TabIndex = 26;
@@ -170,7 +170,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(41, 57);
+            label9.Location = new Point(21, 57);
             label9.Name = "label9";
             label9.Size = new Size(70, 15);
             label9.TabIndex = 25;
@@ -178,7 +178,7 @@
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(194, 194);
+            btnActualizar.Location = new Point(174, 194);
             btnActualizar.Name = "btnActualizar";
             btnActualizar.Size = new Size(106, 34);
             btnActualizar.TabIndex = 24;
@@ -188,28 +188,28 @@
             // 
             // txtActualizarDireccion
             // 
-            txtActualizarDireccion.Location = new Point(194, 155);
+            txtActualizarDireccion.Location = new Point(174, 155);
             txtActualizarDireccion.Name = "txtActualizarDireccion";
             txtActualizarDireccion.Size = new Size(217, 22);
             txtActualizarDireccion.TabIndex = 23;
             // 
             // txtActualizarTelefono
             // 
-            txtActualizarTelefono.Location = new Point(156, 93);
+            txtActualizarTelefono.Location = new Point(136, 93);
             txtActualizarTelefono.Name = "txtActualizarTelefono";
             txtActualizarTelefono.Size = new Size(143, 22);
             txtActualizarTelefono.TabIndex = 22;
             // 
             // TxtActualizarCorreo
             // 
-            TxtActualizarCorreo.Location = new Point(194, 122);
+            TxtActualizarCorreo.Location = new Point(174, 122);
             TxtActualizarCorreo.Name = "TxtActualizarCorreo";
             TxtActualizarCorreo.Size = new Size(203, 22);
             TxtActualizarCorreo.TabIndex = 21;
             // 
             // txtActualizarNombre
             // 
-            txtActualizarNombre.Location = new Point(184, 22);
+            txtActualizarNombre.Location = new Point(164, 22);
             txtActualizarNombre.Name = "txtActualizarNombre";
             txtActualizarNombre.Size = new Size(204, 22);
             txtActualizarNombre.TabIndex = 20;
@@ -217,7 +217,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(38, 158);
+            label5.Location = new Point(18, 158);
             label5.Name = "label5";
             label5.Size = new Size(73, 15);
             label5.TabIndex = 19;
@@ -226,7 +226,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(38, 96);
+            label6.Location = new Point(18, 96);
             label6.Name = "label6";
             label6.Size = new Size(70, 15);
             label6.TabIndex = 18;
@@ -235,7 +235,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(23, 129);
+            label7.Location = new Point(3, 129);
             label7.Name = "label7";
             label7.Size = new Size(143, 15);
             label7.TabIndex = 17;
@@ -244,7 +244,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(36, 25);
+            label8.Location = new Point(16, 25);
             label8.Name = "label8";
             label8.Size = new Size(130, 15);
             label8.TabIndex = 16;
@@ -290,7 +290,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(185, 186);
+            btnAgregar.Location = new Point(194, 186);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(106, 34);
             btnAgregar.TabIndex = 14;
