@@ -26,5 +26,11 @@ namespace Actividad_1_unidad_3___Carlos_Perez
             FrmCategorias frmCategorias = new FrmCategorias();
             frmCategorias.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FrmProductos frmProductos = new FrmProductos();
+            frmProductos.ShowDialog();
+        }
     }
 }
