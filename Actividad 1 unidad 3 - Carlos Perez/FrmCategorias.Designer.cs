@@ -227,7 +227,7 @@
             cbCategorias.Items.AddRange(new object[] { "CONSUMO", "HIGIENE", "UTILIDAD", "LIMPIEZA", "CUIDADO PERSONAL", "ENTRETENIMIENTO", "DEPORTES" });
             cbCategorias.Location = new Point(201, 77);
             cbCategorias.Name = "cbCategorias";
-            cbCategorias.Size = new Size(121, 25);
+            cbCategorias.Size = new Size(184, 25);
             cbCategorias.TabIndex = 15;
             // 
             // btnAgregar

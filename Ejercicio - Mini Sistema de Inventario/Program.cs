@@ -1,8 +1,20 @@
-﻿class Program
+﻿using System.ComponentModel.Design;
+
+class Program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Ya funciono...");
+        Producto producto = new Producto(1,"Jugo",50,10);
+        List<Producto> listaProducto = new List<Producto>();
+        
+
+        producto.MostrarInfo();
+
+        Console.WriteLine("INSERTA EL ID PARA BUSCAR: ");
+        int id = Convert.ToInt32(Console.ReadLine());
+
+        
     }
 }
 
@@ -36,6 +48,40 @@ class Producto
 
     class Inventario : IGestion<Producto>
     {
+        List<Producto> listaProducto = new List<Producto>();
+        public void Agregar(Producto item) 
+        {
+            listaProducto.Add(item);
+        }
+
+        public void Eliminar(int id)
+        {
+            listaProducto.RemoveAt(id);
+        }
+
+        public Producto BuscarId(int id)
+        {
+            foreach (Producto producto in listaProducto)
+            {
+
+            if (producto.Id == id)
+                {
+                    producto.MostrarInfo();
+                    return producto;
+                }
+            }
+            return null;
+        }
+
+        public void Listar()
+        {
+            foreach (var producto in listaProducto)
+            {
+              producto.MostrarInfo();
+            }
+
+        }
+
 
     }
 }
