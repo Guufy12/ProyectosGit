@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Actividad_1_unidad_3___Carlos_Perez.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,30 +23,23 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int categoriaID = Convert.ToInt32(txtCategoriaId.Text);
-                    string comandoInsertar = @$"Insert into Categorias(Categoria_ID, NOMBRE_Categoria)
-                                           VALUES({categoriaID}, '{cbCategorias.Text}')";
-
-
-                    using (SqlCommand comando = new SqlCommand(comandoInsertar, conexion))
+                    var categoria = new Categoria
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Categoria Agregada");
+                        CategoriaId = Convert.ToInt32(txtCategoriaId.Text),
+                        NombreCategoria = cbCategorias.Text
+                    };
 
-                        }
-                    }
+                    context.Categorias.Add(categoria);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Categoría agregada correctamente");
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -63,27 +57,15 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    string comandoMostrar = "Select * From CATEGORIAS";
-
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
-                        {
-                            DataTable Tabla = new DataTable();
-                            adapter.Fill(Tabla);
-                            dgvCategorias.DataSource = Tabla;
-                        }
-                    }
+                    var categorias = context.Categorias.ToList();
+                    dgvCategorias.DataSource = categorias;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -91,29 +73,28 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int categoriaID = Convert.ToInt32(txtActualizarCategoria.Text);
-                    string comandoActualizar = @$"Update Categorias Set NOMBRE_Categoria  = '{cbActualizarCategoria.Text}' 
-                                                  Where Categoria_ID = {categoriaID}";
+                    int categoriaId = Convert.ToInt32(txtActualizarCategoria.Text);
 
-                    using (SqlCommand comando = new SqlCommand(comandoActualizar, conexion))
+                    var categoria = context.Categorias.FirstOrDefault(c => c.CategoriaId == categoriaId);
+
+                    if (categoria != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
+                        categoria.NombreCategoria = cbActualizarCategoria.Text;
+                        context.SaveChanges();
 
-                            MessageBox.Show("CATEGORIA ACTUALIZADA");
-                        }
+                        MessageBox.Show("Categoría actualizada correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Categoría no encontrada");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -121,28 +102,29 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
                     int categoriaID = Convert.ToInt32(txtEliminarCategoria.Text);
-                    string comandoMostrar = $"Delete from Categorias where Categoria_ID = {categoriaID}";
 
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
+                    var categoria = context.Categorias.Find(categoriaID);
+
+                    if (categoria != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Categoria ELIMINADA");
-                            txtEliminarCategoria.Clear();
-                        }
+                        context.Categorias.Remove(categoria);
+                        context.SaveChanges();
+
+                        MessageBox.Show("Categoría eliminada correctamente");
+                        txtEliminarCategoria.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró una categoría con ese ID");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }
