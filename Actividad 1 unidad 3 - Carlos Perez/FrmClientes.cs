@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Actividad_1_unidad_3___Carlos_Perez.Models;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Data.SqlClient;
 
 namespace Actividad_1_unidad_3___Carlos_Perez
 {
@@ -27,35 +28,35 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var db = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int clienteId = Convert.ToInt32(txtClienteID.Text);
-                    string comandoInsertar = @$"Insert into Clientes(Cliente_ID, NOMBRE_COMPLETO, CORREO_ELECTRONICO,TELEFONO, DIRECCION)
-                                           VALUES({clienteId}, '{txtNombre.Text}', '{txtCorreo.Text}','{txtTelefono.Text}', '{txtDireccion.Text}')";
-
-
-                    using (SqlCommand comando = new SqlCommand(comandoInsertar, conexion))
+                    var nuevoCliente = new Cliente
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente Agregado");
-                            //string texto = txtNombre.Text;
-                            txtNombre.Clear();
-                            txtTelefono.Clear();
-                            txtClienteID.Clear();
-                            txtCorreo.Clear();
-                            txtDireccion.Clear();
-                        }
+                        ClienteId = Convert.ToInt32(txtClienteID.Text),
+                        NombreCompleto = txtNombre.Text,
+                        CorreoElectronico = txtCorreo.Text,
+                        Telefono = txtTelefono.Text,
+                        Direccion = txtDireccion.Text
+                    };
+
+                    db.Clientes.Add(nuevoCliente);
+                    int celdasAfectadas = db.SaveChanges();
+
+                    if (celdasAfectadas > 0)
+                    {
+                        MessageBox.Show("Cliente agregado correctamente.");
+
+                        txtClienteID.Clear();
+                        txtNombre.Clear();
+                        txtCorreo.Clear();
+                        txtTelefono.Clear();
+                        txtDireccion.Clear();
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -63,27 +64,15 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    string comandoMostrar = "Select * From Clientes";
-
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
-                        {
-                            DataTable Tabla = new DataTable();
-                            adapter.Fill(Tabla);
-                            dgvClientes.DataSource = Tabla;
-                        }
-                    }
+                    var clientes = context.Clientes.ToList();
+                    dgvClientes.DataSource = clientes;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -91,60 +80,60 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
                     int clienteId = Convert.ToInt32(txtActualizarClienteid.Text);
-                    string comandoActualizar = @$"Update Clientes Set NOMBRE_COMPLETO  = '{txtActualizarNombre.Text}', CORREO_ELECTRONICO ='{TxtActualizarCorreo.Text}' ,TELEFONO = '{txtActualizarTelefono.Text}', DIRECCION= '{txtActualizarDireccion.Text}'
-                                                  Where Cliente_id = {clienteId}";
 
-                    using (SqlCommand comando = new SqlCommand(comandoActualizar, conexion))
+                    var cliente = context.Clientes.FirstOrDefault(c => c.ClienteId == clienteId);
+
+                    if (cliente != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente Actualizado");
+                        cliente.NombreCompleto = txtActualizarNombre.Text;
+                        cliente.CorreoElectronico = TxtActualizarCorreo.Text;
+                        cliente.Telefono = txtActualizarTelefono.Text;
+                        cliente.Direccion = txtActualizarDireccion.Text;
+                        context.SaveChanges();
 
-                        }
+                        MessageBox.Show("Cliente actualizado correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cliente no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
- 
+
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
                     int clienteId = Convert.ToInt32(txtEliminarCliente.Text);
-                    string comandoMostrar = $"Delete from Clientes where Cliente_ID = {clienteId}";
 
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
+                    var cliente = context.Clientes.FirstOrDefault(c => c.ClienteId == clienteId);
+
+                    if (cliente != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Cliente Eliminado");
-
-                        }
+                        context.Clientes.Remove(cliente);
+                        context.SaveChanges();
+                        MessageBox.Show("Cliente eliminado correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cliente no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Actividad_1_unidad_3___Carlos_Perez.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,33 +28,30 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int proveedorId = Convert.ToInt32(txtProveedorID.Text);
-                    string comandoInsertar = @$"Insert into Proveedores(Proveedores_ID, NOMBRE_PROVEEDOR,TELEFONO, CORREO_ELECTRONICO)
-                                           VALUES({proveedorId}, '{txtProveedorNombre.Text}','{txtTelefono.Text}', '{txtCorreo.Text}')";
-
-
-                    using (SqlCommand comando = new SqlCommand(comandoInsertar, conexion))
+                    var proveedor = new Proveedore
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Proveedor Agregado");
-                            txtProveedorID.Clear();
-                            txtTelefono.Clear();
-                            txtProveedorNombre.Clear();
-                            txtCorreo.Clear();
-                        }
-                    }
-                }
+                        ProveedoresId = Convert.ToInt32(txtProveedorID.Text),
+                        NombreProveedor = txtProveedorNombre.Text,
+                        Telefono = txtTelefono.Text,
+                        CorreoElectronico = txtCorreo.Text
+                    };
 
+                    context.Proveedores.Add(proveedor);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Proveedor agregado correctamente");
+
+                    txtProveedorID.Clear();
+                    txtTelefono.Clear();
+                    txtProveedorNombre.Clear();
+                    txtCorreo.Clear();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -61,27 +59,15 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    string comandoMostrar = "Select * From Proveedores";
-
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
-                        {
-                            DataTable Tabla = new DataTable();
-                            adapter.Fill(Tabla);
-                            dgvProveedores.DataSource = Tabla;
-                        }
-                    }
+                    var proveedores = context.Proveedores.ToList();
+                    dgvProveedores.DataSource = proveedores;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -89,33 +75,36 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int ProveedorID = Convert.ToInt32(txtActualizarProveedorID.Text);
-                    string comandoActualizar = @$"Update Proveedores Set NOMBRE_PROVEEDOR  = '{txtActualizarNombre.Text}',TELEFONO = '{txtActualizarTelefono.Text}' , CORREO_ELECTRONICO ='{TxtActualizarCorreo.Text}' 
-                                                  Where Proveedores_ID = {ProveedorID}";
+                    int proveedorId = Convert.ToInt32(txtActualizarProveedorID.Text);
 
-                    using (SqlCommand comando = new SqlCommand(comandoActualizar, conexion))
+                    var proveedor = context.Proveedores.FirstOrDefault(p => p.ProveedoresId == proveedorId);
+
+                    if (proveedor != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
+                        proveedor.NombreProveedor = txtActualizarNombre.Text;
+                        proveedor.Telefono = txtActualizarTelefono.Text;
+                        proveedor.CorreoElectronico = TxtActualizarCorreo.Text;
 
-                            MessageBox.Show("PROVEEDOR ACTUALIZADO");
-                            txtProveedorID.Clear();
-                            txtTelefono.Clear();
-                            txtProveedorNombre.Clear();
-                            txtCorreo.Clear();
-                        }
+                        context.SaveChanges();
+
+                        MessageBox.Show("Proveedor actualizado correctamente");
+
+                        txtActualizarProveedorID.Clear();
+                        txtActualizarNombre.Clear();
+                        txtActualizarTelefono.Clear();
+                        TxtActualizarCorreo.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Proveedor no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -123,28 +112,29 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int proveedorID = Convert.ToInt32(txtEliminarProveedor.Text);
-                    string comandoMostrar = $"Delete from Proveedores where Proveedores_ID = {proveedorID}";
+                    int proveedorId = Convert.ToInt32(txtEliminarProveedor.Text);
 
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
+                    var proveedor = context.Proveedores.FirstOrDefault(p => p.ProveedoresId == proveedorId);
+
+                    if (proveedor != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("PROVEEDOR ELIMINADO");
-                            txtEliminarProveedor.Clear();
-                        }
+                        context.Proveedores.Remove(proveedor);
+                        context.SaveChanges();
+
+                        MessageBox.Show("Proveedor eliminado correctamente");
+                        txtEliminarProveedor.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Proveedor no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
     }

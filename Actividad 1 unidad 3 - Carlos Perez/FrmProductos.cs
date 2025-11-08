@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Actividad_1_unidad_3___Carlos_Perez.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,31 +28,27 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    int productoId = Convert.ToInt32(txtIdProducto.Text);
-                    int categoriaID = Convert.ToInt32(txtIdCategoria.Text);
-                    string comandoInsertar = @$"Insert into Productos(Producto_ID, NOMBRE_Producto,Descripcion,Precio, Stock,Categoria_ID)
-                                           VALUES({productoId}, '{txtNombreProducto.Text}','{txtDescripcion.Text}', '{txtPrecio.Text}','{txtStock.Text}',{categoriaID})";
-
-
-                    using (SqlCommand comando = new SqlCommand(comandoInsertar, conexion))
+                    var producto = new Producto
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Producto Agregado");
+                        ProductoId = Convert.ToInt32(txtIdProducto.Text),
+                        NombreProducto = txtNombreProducto.Text,
+                        Descripcion = txtDescripcion.Text,
+                        Precio = decimal.Parse(txtPrecio.Text),
+                        Stock = int.Parse(txtStock.Text),
+                        CategoriaId = Convert.ToInt32(txtIdCategoria.Text)
+                    };
 
-                        }
-                    }
+                    context.Productos.Add(producto);
+                    context.SaveChanges();
+
+                    MessageBox.Show("Producto agregado correctamente");
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -59,27 +56,15 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
-                    string comandoMostrar = "Select * From Productos";
-
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(comando))
-                        {
-                            DataTable Tabla = new DataTable();
-                            adapter.Fill(Tabla);
-                            dgvProductos.DataSource = Tabla;
-                        }
-                    }
+                    var productos = context.Productos.ToList();
+                    dgvProductos.DataSource = productos;
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -87,30 +72,34 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
                     int productoId = Convert.ToInt32(txtActualizarNombre.Text);
-                    int categoriaID = Convert.ToInt32(txtActualizarIdCategoria.Text);
-                    string comandoActualizar = @$"Update Productos Set Nombre_Producto  = '{txtActualizarProducto.Text}', Descripcion = '{txtActualizarDesc.Text}', Precio = '{txtActualizarPrecio.Text}', Stock = '{txtActualizarStock.Text}', Categoria_ID = {categoriaID}
-                                                  Where Producto_ID = {productoId}";
+                    int categoriaId = Convert.ToInt32(txtActualizarIdCategoria.Text);
 
-                    using (SqlCommand comando = new SqlCommand(comandoActualizar, conexion))
+                    var producto = context.Productos.FirstOrDefault(p => p.ProductoId == productoId);
+
+                    if (producto != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
+                        producto.NombreProducto = txtActualizarProducto.Text;
+                        producto.Descripcion = txtActualizarDesc.Text;
+                        producto.Precio = decimal.Parse(txtActualizarPrecio.Text);
+                        producto.Stock = int.Parse(txtActualizarStock.Text);
+                        producto.CategoriaId = categoriaId;
 
-                            MessageBox.Show("Producto ACTUALIZADA");
-                        }
+                        context.SaveChanges();
+
+                        MessageBox.Show("Producto actualizado correctamente");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Producto no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
 
@@ -118,30 +107,30 @@ namespace Actividad_1_unidad_3___Carlos_Perez
         {
             try
             {
-                string connectionStr = "Data source = localhost; initial catalog= TiendaDB; Integrated security=True;TrustServerCertificate=True";
-                using (SqlConnection conexion = new SqlConnection(connectionStr))
+                using (var context = new TiendaDbContext())
                 {
-                    conexion.Open();
                     int productoId = Convert.ToInt32(txtEliminarProducto.Text);
-                    string comandoMostrar = $"Delete from Productos where Producto_ID = {productoId}";
 
-                    using (SqlCommand comando = new SqlCommand(comandoMostrar, conexion))
+                    var producto = context.Productos.FirstOrDefault(p => p.ProductoId == productoId);
+
+                    if (producto != null)
                     {
-                        int celdasAfectadas = comando.ExecuteNonQuery();
-                        if (celdasAfectadas > 0)
-                        {
-                            MessageBox.Show("Producto ELIMINADO");
-                            txtEliminarProducto.Clear();
-                        }
+                        context.Productos.Remove(producto);
+                        context.SaveChanges();
+
+                        MessageBox.Show("Producto eliminado correctamente");
+                        txtEliminarProducto.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Producto no encontrado");
                     }
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
-    }
 
 }
