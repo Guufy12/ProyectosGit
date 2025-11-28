@@ -8,6 +8,9 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
         {
             InitializeComponent();
         }
+        FrmEstudiantes frmEstudiante = new FrmEstudiantes();
+        Form frmMateria = new Form();
+        Form frmCalificaciones = new Form();
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
@@ -20,12 +23,15 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             {
                 case "ESTUDIANTE":
                     MessageBox.Show("ESTUDIANTE FUNCIONA");
+                    frmEstudiante.Show();
                     break;
                 case "MATERIA":
                     MessageBox.Show("MATERIA FUNCIONA");
+                    frmMateria.Show();
                     break;
                 case "CALIFICACIONES":
                     MessageBox.Show("CALIFICACIONES FUNCIONA");
+                    frmCalificaciones.Show();
                     break;
                 default:
                     MessageBox.Show("NADA SELECCIONADO FUNCIONA");
