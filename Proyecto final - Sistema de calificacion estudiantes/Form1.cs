@@ -22,7 +22,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             switch (toolStripComboBox1.Text)
             {
                 case "ESTUDIANTE":
-                    MessageBox.Show("ESTUDIANTE FUNCIONA");
+                    //MessageBox.Show("ESTUDIANTE FUNCIONA"); Ya no es necesario
                     frmEstudiante.Show();
                     break;
                 case "MATERIA":
@@ -34,7 +34,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     frmCalificaciones.Show();
                     break;
                 default:
-                    MessageBox.Show("NADA SELECCIONADO FUNCIONA");
+                    MessageBox.Show("NADA SELECCIONADO");
                     break;
             }
         }

@@ -34,6 +34,8 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     string ComandoStr = "Insert into Estudiante(ESTUDIANTE_ID,NOMBRE, MATRICULA, FECHA_NACIMIENTO, CARRERA) Values(@ID, @NOMBRE, @MATRICULA, @FECHANACIMIENTO, @CARRERA) ";
                     using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
                     {
+                        //Alternativa, eliminado en el debuggeo
+
                         //comando.Parameters.Add("@ID", SqlDbType.Int).Value = Convert.ToInt64(txtID.Text);
                         // comando.Parameters.Add("@NOMBRE", SqlDbType.VarChar).Value = txtNombreEstudiante.Text;
                         //comando.Parameters.Add("@MATRICULA", SqlDbType.VarChar).Value = txtMatricula.Text;
@@ -45,8 +47,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                         comando.Parameters.AddWithValue("@MATRICULA", txtMatricula.Text);
                         comando.Parameters.AddWithValue("@FECHANACIMIENTO", DtpNacimiento.Value);
                         comando.Parameters.AddWithValue("@CARRERA", txtCarrera.Text);
-                        //comando.ExecuteNonQuery();
-
+                        //comando.ExecuteNonQuery(); Da error, replica la PK
 
                         if (comando.ExecuteNonQuery() > 0)
                         {
@@ -54,7 +55,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                             txtID.Clear();
                             txtNombreEstudiante.Clear();
                             txtMatricula.Clear();
-                            DtpNacimiento.Refresh();
+                            //DtpNacimiento.Value; //Trato de resetear el DTP
                             txtCarrera.Clear();
                         }
 
@@ -76,7 +77,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 using (SqlConnection conexion = new SqlConnection(conexionStr))
                 {
                     conexion.Open();
-                    MessageBox.Show("CONEXION EXITOSA");
+                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
                     string comandoString = "SELECT * FROM ESTUDIANTE";
                     using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                     {
@@ -99,6 +100,42 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             txtMatricula.Clear();
             DtpNacimiento.Refresh();
             txtCarrera.Clear();
+        }
+
+        private void BtnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                DataTable tabla = new DataTable();
+                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                {
+                    conexion.Open();
+                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
+                    string comandoString = $"Update Estudiante set Nombre = @Nombre, Matricula = @Matricula, Fecha_Nacimiento = @FechaNacimiento, Carrera = @Carrera Where ESTUDIANTE_ID = @ID";
+                    using (SqlCommand comando = new SqlCommand(comandoString, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDActualizar.Text));
+                        comando.Parameters.AddWithValue("@Nombre", txtNombreAct.Text);
+                        comando.Parameters.AddWithValue("@Matricula", txtMatriculaAct.Text);
+                        comando.Parameters.AddWithValue("@FechaNacimiento", DtpFechaAct.Value);
+                        comando.Parameters.AddWithValue("@Carrera", txtCarreraAct.Text);
+                        if (comando.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Estudiante Actualizado");
+                            txtID.Clear();
+                            txtNombreEstudiante.Clear();
+                            txtMatricula.Clear();
+                            txtCarrera.Clear();
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
         }
     }
 }

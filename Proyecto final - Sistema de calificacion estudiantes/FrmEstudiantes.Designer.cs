@@ -276,6 +276,7 @@
             BtnActualizar.TabIndex = 10;
             BtnActualizar.Text = "ACTUALIZAR";
             BtnActualizar.UseVisualStyleBackColor = true;
+            BtnActualizar.Click += BtnActualizar_Click;
             // 
             // txtCarreraAct
             // 
