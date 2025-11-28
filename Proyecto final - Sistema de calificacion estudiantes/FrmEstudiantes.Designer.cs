@@ -153,6 +153,7 @@
             BtnLimpiar.TabIndex = 11;
             BtnLimpiar.Text = "LIMPIAR";
             BtnLimpiar.UseVisualStyleBackColor = true;
+            BtnLimpiar.Click += BtnLimpiar_Click;
             // 
             // BtnEnviar
             // 
@@ -163,6 +164,7 @@
             BtnEnviar.TabIndex = 10;
             BtnEnviar.Text = "ENVIAR";
             BtnEnviar.UseVisualStyleBackColor = true;
+            BtnEnviar.Click += BtnEnviar_Click;
             // 
             // txtCarrera
             // 
