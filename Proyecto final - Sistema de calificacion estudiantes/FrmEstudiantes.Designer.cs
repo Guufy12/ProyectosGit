@@ -202,7 +202,7 @@
             groupBox2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(412, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(459, 234);
+            groupBox2.Size = new Size(590, 356);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "LISTADO DE ESTUDIANTES";
@@ -210,7 +210,7 @@
             // BtnMostrar
             // 
             BtnMostrar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnMostrar.Location = new Point(315, 185);
+            BtnMostrar.Location = new Point(393, 307);
             BtnMostrar.Name = "BtnMostrar";
             BtnMostrar.Size = new Size(116, 43);
             BtnMostrar.TabIndex = 11;
@@ -224,7 +224,7 @@
             DgvMostrar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvMostrar.Location = new Point(18, 28);
             DgvMostrar.Name = "DgvMostrar";
-            DgvMostrar.Size = new Size(422, 151);
+            DgvMostrar.Size = new Size(554, 273);
             DgvMostrar.TabIndex = 0;
             // 
             // groupBox3
@@ -358,7 +358,7 @@
             groupBox4.Controls.Add(txtIDEliminar);
             groupBox4.Controls.Add(label13);
             groupBox4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox4.Location = new Point(412, 282);
+            groupBox4.Location = new Point(483, 392);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(349, 118);
             groupBox4.TabIndex = 8;
@@ -374,6 +374,7 @@
             BtnEliminar.TabIndex = 11;
             BtnEliminar.Text = "Eliminar";
             BtnEliminar.UseVisualStyleBackColor = true;
+            BtnEliminar.Click += BtnEliminar_Click;
             // 
             // txtIDEliminar
             // 
@@ -396,7 +397,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Aquamarine;
-            ClientSize = new Size(897, 585);
+            ClientSize = new Size(1014, 585);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);

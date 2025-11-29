@@ -137,5 +137,34 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 MessageBox.Show("Hubo un error: " + ex);
             }
         }
+
+        private void BtnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                DataTable tabla = new DataTable();
+                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                {
+                    conexion.Open();
+                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
+                    string comandoString = $"Delete Estudiante Where ESTUDIANTE_ID = @ID";
+                    using (SqlCommand comando = new SqlCommand(comandoString, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDEliminar.Text));
+                        if(comando.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Estudiante ELiminado");
+                            txtIDEliminar.Clear();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
     }
+    
 }
