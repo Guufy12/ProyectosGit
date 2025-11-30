@@ -9,8 +9,8 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             InitializeComponent();
         }
         FrmEstudiantes frmEstudiante = new FrmEstudiantes();
-        Form frmMateria = new Form();
-        Form frmCalificaciones = new Form();
+        FrmMateria frmMateria = new FrmMateria();
+        FrmCalificaciones frmCalificaciones = new FrmCalificaciones();
 
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {

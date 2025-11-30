@@ -107,11 +107,9 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             try
             {
                 string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
-                DataTable tabla = new DataTable();
                 using (SqlConnection conexion = new SqlConnection(conexionStr))
                 {
                     conexion.Open();
-                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
                     string comandoString = $"Update Estudiante set Nombre = @Nombre, Matricula = @Matricula, Fecha_Nacimiento = @FechaNacimiento, Carrera = @Carrera Where ESTUDIANTE_ID = @ID";
                     using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                     {
@@ -143,11 +141,9 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             try
             {
                 string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
-                DataTable tabla = new DataTable();
                 using (SqlConnection conexion = new SqlConnection(conexionStr))
                 {
                     conexion.Open();
-                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
                     string comandoString = $"Delete Estudiante Where ESTUDIANTE_ID = @ID";
                     using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                     {
