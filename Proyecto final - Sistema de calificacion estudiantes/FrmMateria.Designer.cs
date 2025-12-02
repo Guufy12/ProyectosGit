@@ -43,15 +43,15 @@
             groupBox3 = new GroupBox();
             button1 = new Button();
             button2 = new Button();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtCreditosAct = new TextBox();
+            txtNombreAct = new TextBox();
+            txtIdAct = new TextBox();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
             groupBox4 = new GroupBox();
-            button4 = new Button();
-            textBox6 = new TextBox();
+            BtnELiminar = new Button();
+            txtIdEliminar = new TextBox();
             label7 = new Label();
             label8 = new Label();
             groupBox2.SuspendLayout();
@@ -192,9 +192,9 @@
             groupBox3.BackColor = Color.White;
             groupBox3.Controls.Add(button1);
             groupBox3.Controls.Add(button2);
-            groupBox3.Controls.Add(textBox1);
-            groupBox3.Controls.Add(textBox2);
-            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(txtCreditosAct);
+            groupBox3.Controls.Add(txtNombreAct);
+            groupBox3.Controls.Add(txtIdAct);
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(label6);
@@ -227,26 +227,26 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
-            // textBox1
+            // txtCreditosAct
             // 
-            textBox1.Location = new Point(188, 108);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(154, 27);
-            textBox1.TabIndex = 7;
+            txtCreditosAct.Location = new Point(188, 108);
+            txtCreditosAct.Name = "txtCreditosAct";
+            txtCreditosAct.Size = new Size(154, 27);
+            txtCreditosAct.TabIndex = 7;
             // 
-            // textBox2
+            // txtNombreAct
             // 
-            textBox2.Location = new Point(188, 66);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(192, 27);
-            textBox2.TabIndex = 6;
+            txtNombreAct.Location = new Point(188, 66);
+            txtNombreAct.Name = "txtNombreAct";
+            txtNombreAct.Size = new Size(192, 27);
+            txtNombreAct.TabIndex = 6;
             // 
-            // textBox3
+            // txtIdAct
             // 
-            textBox3.Location = new Point(188, 31);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(170, 27);
-            textBox3.TabIndex = 5;
+            txtIdAct.Location = new Point(188, 31);
+            txtIdAct.Name = "txtIdAct";
+            txtIdAct.Size = new Size(170, 27);
+            txtIdAct.TabIndex = 5;
             // 
             // label4
             // 
@@ -281,8 +281,8 @@
             // groupBox4
             // 
             groupBox4.BackColor = Color.White;
-            groupBox4.Controls.Add(button4);
-            groupBox4.Controls.Add(textBox6);
+            groupBox4.Controls.Add(BtnELiminar);
+            groupBox4.Controls.Add(txtIdEliminar);
             groupBox4.Controls.Add(label7);
             groupBox4.Controls.Add(label8);
             groupBox4.Font = new Font("Arial Narrow", 12.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -293,22 +293,23 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Eliminar Materia";
             // 
-            // button4
+            // BtnELiminar
             // 
-            button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button4.Location = new Point(220, 78);
-            button4.Name = "button4";
-            button4.Size = new Size(86, 31);
-            button4.TabIndex = 10;
-            button4.Text = "ENVIAR";
-            button4.UseVisualStyleBackColor = true;
+            BtnELiminar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnELiminar.Location = new Point(220, 78);
+            BtnELiminar.Name = "BtnELiminar";
+            BtnELiminar.Size = new Size(86, 31);
+            BtnELiminar.TabIndex = 10;
+            BtnELiminar.Text = "Eliminar";
+            BtnELiminar.UseVisualStyleBackColor = true;
+            BtnELiminar.Click += BtnELiminar_Click;
             // 
-            // textBox6
+            // txtIdEliminar
             // 
-            textBox6.Location = new Point(188, 35);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(170, 27);
-            textBox6.TabIndex = 5;
+            txtIdEliminar.Location = new Point(188, 35);
+            txtIdEliminar.Name = "txtIdEliminar";
+            txtIdEliminar.Size = new Size(170, 27);
+            txtIdEliminar.TabIndex = 5;
             // 
             // label7
             // 
@@ -369,15 +370,15 @@
         private GroupBox groupBox3;
         private Button button1;
         private Button button2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtCreditosAct;
+        private TextBox txtNombreAct;
+        private TextBox txtIdAct;
         private Label label4;
         private Label label5;
         private Label label6;
         private GroupBox groupBox4;
-        private Button button4;
-        private TextBox textBox6;
+        private Button BtnELiminar;
+        private TextBox txtIdEliminar;
         private Label label7;
         private Label label8;
     }

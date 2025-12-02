@@ -87,15 +87,40 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 using (SqlConnection conexion = new SqlConnection(conexionStr))
                 {
                     conexion.Open();
-                    string ComandoStr = "Insert into MATERIA(MATERIA_ID, NOMBRE_MATERIA, CREDITOS) Values(@ID, @Nombre, @Creditos) ";
+                    string ComandoStr = "Update MATERIA Set NOMBRE_MATERIA = @Nombre, CREDITOS = @Creditos Where Materia_ID = @ID";
                     using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
                     {
-                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDMateria.Text));
-                        comando.Parameters.AddWithValue("@Nombre", txtNombreMateria.Text);
-                        comando.Parameters.AddWithValue("@Creditos", txtCreditos.Text);
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIdAct.Text));
+                        comando.Parameters.AddWithValue("@Nombre", txtNombreAct.Text);
+                        comando.Parameters.AddWithValue("@Creditos", txtCreditosAct.Text);
                         if (comando.ExecuteNonQuery() > 0)
                         {
-                            MessageBox.Show("Materia Agregada");
+                            MessageBox.Show("Materia Actualizada");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
+
+        private void BtnELiminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                {
+                    conexion.Open();
+                    string ComandoStr = "Delete From MATERIA Where Materia_ID = @ID";
+                    using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIdEliminar.Text));                    
+                        if (comando.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Materia Eliminada");
                         }
                     }
                 }
