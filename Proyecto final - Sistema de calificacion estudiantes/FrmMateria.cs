@@ -63,10 +63,37 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     string ComandoStr = "Insert into MATERIA(MATERIA_ID, NOMBRE_MATERIA, CREDITOS) Values(@ID, @Nombre, @Creditos) ";
                     using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
                     {
-                        comando.Parameters.AddWithValue("@ID",Convert.ToInt64(txtIDMateria.Text));
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDMateria.Text));
                         comando.Parameters.AddWithValue("@Nombre", txtNombreMateria.Text);
                         comando.Parameters.AddWithValue("@Creditos", txtCreditos.Text);
-                        if(comando.ExecuteNonQuery() > 0)
+                        if (comando.ExecuteNonQuery() > 0)
+                        {
+                            MessageBox.Show("Materia Agregada");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                {
+                    conexion.Open();
+                    string ComandoStr = "Insert into MATERIA(MATERIA_ID, NOMBRE_MATERIA, CREDITOS) Values(@ID, @Nombre, @Creditos) ";
+                    using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDMateria.Text));
+                        comando.Parameters.AddWithValue("@Nombre", txtNombreMateria.Text);
+                        comando.Parameters.AddWithValue("@Creditos", txtCreditos.Text);
+                        if (comando.ExecuteNonQuery() > 0)
                         {
                             MessageBox.Show("Materia Agregada");
                         }

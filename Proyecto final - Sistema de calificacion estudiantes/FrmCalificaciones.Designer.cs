@@ -56,9 +56,42 @@
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
+            groupBox3 = new GroupBox();
+            lblTotalAct = new Label();
+            lblClasifAct = new Label();
+            lblEstadoAct = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            txtExamAct = new TextBox();
+            label18 = new Label();
+            txtcal3Act = new TextBox();
+            txtCal4Act = new TextBox();
+            label19 = new Label();
+            label20 = new Label();
+            txtCal1Act = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
+            txtCal2Act = new TextBox();
+            txtMateriaAct = new TextBox();
+            txtEstuAct = new TextBox();
+            txtIdAct = new TextBox();
+            label21 = new Label();
+            label22 = new Label();
+            label23 = new Label();
+            label24 = new Label();
+            label25 = new Label();
+            groupBox4 = new GroupBox();
+            lblEstudianteEliminado = new Label();
+            label14 = new Label();
+            BtnEliminar = new Button();
+            txtIDEliminar = new TextBox();
+            label13 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrarCalificaciones).BeginInit();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -69,7 +102,7 @@
             groupBox1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(979, 185);
+            groupBox1.Size = new Size(1322, 185);
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "LISTADO DE CALIFICACIONES";
@@ -77,7 +110,7 @@
             // BtnMostrarCalificaciones
             // 
             BtnMostrarCalificaciones.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnMostrarCalificaciones.Location = new Point(830, 138);
+            BtnMostrarCalificaciones.Location = new Point(1200, 64);
             BtnMostrarCalificaciones.Name = "BtnMostrarCalificaciones";
             BtnMostrarCalificaciones.Size = new Size(116, 43);
             BtnMostrarCalificaciones.TabIndex = 11;
@@ -91,7 +124,7 @@
             DgvMostrarCalificaciones.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DgvMostrarCalificaciones.Location = new Point(18, 28);
             DgvMostrarCalificaciones.Name = "DgvMostrarCalificaciones";
-            DgvMostrarCalificaciones.Size = new Size(955, 104);
+            DgvMostrarCalificaciones.Size = new Size(1176, 151);
             DgvMostrarCalificaciones.TabIndex = 0;
             // 
             // groupBox2
@@ -124,7 +157,7 @@
             groupBox2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(12, 203);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(979, 235);
+            groupBox2.Size = new Size(890, 235);
             groupBox2.TabIndex = 8;
             groupBox2.TabStop = false;
             groupBox2.Text = "Agregar Calificaciones";
@@ -138,6 +171,7 @@
             lblCalificacion.Size = new Size(18, 19);
             lblCalificacion.TabIndex = 22;
             lblCalificacion.Text = "0";
+            lblCalificacion.Click += lblCalificacion_Click;
             // 
             // lblClasificacion
             // 
@@ -339,12 +373,322 @@
             label3.TabIndex = 2;
             label3.Text = "ID de Materia";
             // 
+            // groupBox3
+            // 
+            groupBox3.BackColor = Color.White;
+            groupBox3.Controls.Add(lblTotalAct);
+            groupBox3.Controls.Add(lblClasifAct);
+            groupBox3.Controls.Add(lblEstadoAct);
+            groupBox3.Controls.Add(label15);
+            groupBox3.Controls.Add(label16);
+            groupBox3.Controls.Add(label17);
+            groupBox3.Controls.Add(txtExamAct);
+            groupBox3.Controls.Add(label18);
+            groupBox3.Controls.Add(txtcal3Act);
+            groupBox3.Controls.Add(txtCal4Act);
+            groupBox3.Controls.Add(label19);
+            groupBox3.Controls.Add(label20);
+            groupBox3.Controls.Add(txtCal1Act);
+            groupBox3.Controls.Add(button1);
+            groupBox3.Controls.Add(button2);
+            groupBox3.Controls.Add(txtCal2Act);
+            groupBox3.Controls.Add(txtMateriaAct);
+            groupBox3.Controls.Add(txtEstuAct);
+            groupBox3.Controls.Add(txtIdAct);
+            groupBox3.Controls.Add(label21);
+            groupBox3.Controls.Add(label22);
+            groupBox3.Controls.Add(label23);
+            groupBox3.Controls.Add(label24);
+            groupBox3.Controls.Add(label25);
+            groupBox3.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox3.Location = new Point(12, 444);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(890, 235);
+            groupBox3.TabIndex = 9;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Actualizar Calificaciones";
+            // 
+            // lblTotalAct
+            // 
+            lblTotalAct.AutoSize = true;
+            lblTotalAct.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblTotalAct.Location = new Point(794, 49);
+            lblTotalAct.Name = "lblTotalAct";
+            lblTotalAct.Size = new Size(18, 19);
+            lblTotalAct.TabIndex = 22;
+            lblTotalAct.Text = "0";
+            // 
+            // lblClasifAct
+            // 
+            lblClasifAct.AutoSize = true;
+            lblClasifAct.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblClasifAct.Location = new Point(794, 90);
+            lblClasifAct.Name = "lblClasifAct";
+            lblClasifAct.Size = new Size(86, 19);
+            lblClasifAct.TabIndex = 23;
+            lblClasifAct.Text = "Pendiente";
+            // 
+            // lblEstadoAct
+            // 
+            lblEstadoAct.AutoSize = true;
+            lblEstadoAct.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblEstadoAct.Location = new Point(794, 131);
+            lblEstadoAct.Name = "lblEstadoAct";
+            lblEstadoAct.Size = new Size(86, 19);
+            lblEstadoAct.TabIndex = 24;
+            lblEstadoAct.Text = "Pendiente";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial Narrow", 14.25F);
+            label15.Location = new Point(570, 45);
+            label15.Name = "label15";
+            label15.Size = new Size(148, 23);
+            label15.TabIndex = 19;
+            label15.Text = "Total de calificacion:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Arial Narrow", 14.25F);
+            label16.Location = new Point(570, 86);
+            label16.Name = "label16";
+            label16.Size = new Size(200, 23);
+            label16.TabIndex = 20;
+            label16.Text = "Clasificacion del estudiante:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Arial Narrow", 14.25F);
+            label17.Location = new Point(570, 127);
+            label17.Name = "label17";
+            label17.Size = new Size(62, 23);
+            label17.TabIndex = 21;
+            label17.Text = "Estado:";
+            // 
+            // txtExamAct
+            // 
+            txtExamAct.Location = new Point(372, 155);
+            txtExamAct.Name = "txtExamAct";
+            txtExamAct.Size = new Size(154, 26);
+            txtExamAct.TabIndex = 18;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(269, 158);
+            label18.Name = "label18";
+            label18.Size = new Size(58, 20);
+            label18.TabIndex = 17;
+            label18.Text = "Examen";
+            // 
+            // txtcal3Act
+            // 
+            txtcal3Act.Location = new Point(372, 86);
+            txtcal3Act.Name = "txtcal3Act";
+            txtcal3Act.Size = new Size(154, 26);
+            txtcal3Act.TabIndex = 16;
+            // 
+            // txtCal4Act
+            // 
+            txtCal4Act.Location = new Point(372, 121);
+            txtCal4Act.Name = "txtCal4Act";
+            txtCal4Act.Size = new Size(154, 26);
+            txtCal4Act.TabIndex = 15;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(269, 89);
+            label19.Name = "label19";
+            label19.Size = new Size(87, 20);
+            label19.TabIndex = 13;
+            label19.Text = "Calificacion 3";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(269, 124);
+            label20.Name = "label20";
+            label20.Size = new Size(90, 20);
+            label20.TabIndex = 14;
+            label20.Text = "Calififcacion 4";
+            // 
+            // txtCal1Act
+            // 
+            txtCal1Act.Location = new Point(372, 19);
+            txtCal1Act.Name = "txtCal1Act";
+            txtCal1Act.Size = new Size(154, 26);
+            txtCal1Act.TabIndex = 12;
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(251, 197);
+            button1.Name = "button1";
+            button1.Size = new Size(86, 31);
+            button1.TabIndex = 11;
+            button1.Text = "Borrar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(123, 197);
+            button2.Name = "button2";
+            button2.Size = new Size(101, 31);
+            button2.TabIndex = 10;
+            button2.Text = "Actualizar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // txtCal2Act
+            // 
+            txtCal2Act.Location = new Point(372, 54);
+            txtCal2Act.Name = "txtCal2Act";
+            txtCal2Act.Size = new Size(154, 26);
+            txtCal2Act.TabIndex = 9;
+            // 
+            // txtMateriaAct
+            // 
+            txtMateriaAct.Location = new Point(133, 140);
+            txtMateriaAct.Name = "txtMateriaAct";
+            txtMateriaAct.Size = new Size(103, 26);
+            txtMateriaAct.TabIndex = 7;
+            // 
+            // txtEstuAct
+            // 
+            txtEstuAct.Location = new Point(133, 98);
+            txtEstuAct.Name = "txtEstuAct";
+            txtEstuAct.Size = new Size(103, 26);
+            txtEstuAct.TabIndex = 6;
+            // 
+            // txtIdAct
+            // 
+            txtIdAct.Location = new Point(133, 54);
+            txtIdAct.Name = "txtIdAct";
+            txtIdAct.Size = new Size(103, 26);
+            txtIdAct.TabIndex = 5;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(269, 22);
+            label21.Name = "label21";
+            label21.Size = new Size(87, 20);
+            label21.TabIndex = 3;
+            label21.Text = "Calificacion 1";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(269, 54);
+            label22.Name = "label22";
+            label22.Size = new Size(90, 20);
+            label22.TabIndex = 4;
+            label22.Text = "Calififcacion 2";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(21, 54);
+            label23.Name = "label23";
+            label23.Size = new Size(112, 20);
+            label23.TabIndex = 0;
+            label23.Text = "ID de Calificacion";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(20, 101);
+            label24.Name = "label24";
+            label24.Size = new Size(107, 20);
+            label24.TabIndex = 1;
+            label24.Text = "ID de Estudiante";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(23, 143);
+            label25.Name = "label25";
+            label25.Size = new Size(88, 20);
+            label25.TabIndex = 2;
+            label25.Text = "ID de Materia";
+            // 
+            // groupBox4
+            // 
+            groupBox4.BackColor = Color.White;
+            groupBox4.Controls.Add(lblEstudianteEliminado);
+            groupBox4.Controls.Add(label14);
+            groupBox4.Controls.Add(BtnEliminar);
+            groupBox4.Controls.Add(txtIDEliminar);
+            groupBox4.Controls.Add(label13);
+            groupBox4.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox4.Location = new Point(908, 205);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(320, 474);
+            groupBox4.TabIndex = 10;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Eliminar calificacion";
+            // 
+            // lblEstudianteEliminado
+            // 
+            lblEstudianteEliminado.AutoSize = true;
+            lblEstudianteEliminado.Font = new Font("Arial", 12F, FontStyle.Bold);
+            lblEstudianteEliminado.Location = new Point(57, 258);
+            lblEstudianteEliminado.Name = "lblEstudianteEliminado";
+            lblEstudianteEliminado.Size = new Size(34, 19);
+            lblEstudianteEliminado.TabIndex = 24;
+            lblEstudianteEliminado.Text = "N/a";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Arial Narrow", 14.25F);
+            label14.Location = new Point(53, 203);
+            label14.Name = "label14";
+            label14.Size = new Size(160, 23);
+            label14.TabIndex = 23;
+            label14.Text = "Calificacion Eliminada";
+            // 
+            // BtnEliminar
+            // 
+            BtnEliminar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BtnEliminar.Location = new Point(57, 136);
+            BtnEliminar.Name = "BtnEliminar";
+            BtnEliminar.Size = new Size(86, 31);
+            BtnEliminar.TabIndex = 11;
+            BtnEliminar.Text = "Eliminar";
+            BtnEliminar.UseVisualStyleBackColor = true;
+            BtnEliminar.Click += BtnEliminar_Click;
+            // 
+            // txtIDEliminar
+            // 
+            txtIDEliminar.Location = new Point(57, 95);
+            txtIDEliminar.Name = "txtIDEliminar";
+            txtIDEliminar.Size = new Size(170, 29);
+            txtIDEliminar.TabIndex = 5;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(57, 50);
+            label13.Name = "label13";
+            label13.Size = new Size(80, 23);
+            label13.TabIndex = 0;
+            label13.Text = "Ingrese ID";
+            // 
             // FrmCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Teal;
-            ClientSize = new Size(1022, 450);
+            ClientSize = new Size(1346, 749);
+            Controls.Add(groupBox4);
+            Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "FrmCalificaciones";
@@ -353,6 +697,10 @@
             ((System.ComponentModel.ISupportInitialize)DgvMostrarCalificaciones).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -376,7 +724,6 @@
         private TextBox txtCal1;
         private Label label9;
         private Label label10;
-        private Label label11;
         private TextBox txtExamen;
         private Label label8;
         private TextBox txtCal3;
@@ -386,5 +733,37 @@
         private Label lblCalificacion;
         private Label lblClasificacion;
         private Label lblEstado;
+        private Label label11;
+        private GroupBox groupBox3;
+        private Label lblTotalAct;
+        private Label lblClasifAct;
+        private Label lblEstadoAct;
+        private Label label15;
+        private Label label16;
+        private Label label17;
+        private TextBox txtExamAct;
+        private Label label18;
+        private TextBox txtcal3Act;
+        private TextBox txtCal4Act;
+        private Label label19;
+        private Label label20;
+        private TextBox txtCal1Act;
+        private Button button1;
+        private Button button2;
+        private TextBox txtCal2Act;
+        private TextBox txtMateriaAct;
+        private TextBox txtEstuAct;
+        private TextBox txtIdAct;
+        private Label label21;
+        private Label label22;
+        private Label label23;
+        private Label label24;
+        private Label label25;
+        private GroupBox groupBox4;
+        private Button BtnEliminar;
+        private TextBox txtIDEliminar;
+        private Label label13;
+        private Label lblEstudianteEliminado;
+        private Label label14;
     }
 }

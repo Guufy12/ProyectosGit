@@ -23,15 +23,15 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             {
                 case "ESTUDIANTE":
                     //MessageBox.Show("ESTUDIANTE FUNCIONA"); Ya no es necesario
-                    frmEstudiante.Show();
+                    frmEstudiante.ShowDialog();
                     break;
                 case "MATERIA":
                     MessageBox.Show("MATERIA FUNCIONA");
-                    frmMateria.Show();
+                    frmMateria.ShowDialog();
                     break;
                 case "CALIFICACIONES":
                     MessageBox.Show("CALIFICACIONES FUNCIONA");
-                    frmCalificaciones.Show();
+                    frmCalificaciones.ShowDialog();
                     break;
                 default:
                     MessageBox.Show("NADA SELECCIONADO");

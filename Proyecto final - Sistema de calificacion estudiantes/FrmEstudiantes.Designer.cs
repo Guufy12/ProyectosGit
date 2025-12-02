@@ -358,9 +358,9 @@
             groupBox4.Controls.Add(txtIDEliminar);
             groupBox4.Controls.Add(label13);
             groupBox4.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            groupBox4.Location = new Point(483, 392);
+            groupBox4.Location = new Point(412, 374);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(349, 118);
+            groupBox4.Size = new Size(450, 153);
             groupBox4.TabIndex = 8;
             groupBox4.TabStop = false;
             groupBox4.Text = "Eliminar Estudiante";
@@ -368,7 +368,7 @@
             // BtnEliminar
             // 
             BtnEliminar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnEliminar.Location = new Point(105, 72);
+            BtnEliminar.Location = new Point(177, 91);
             BtnEliminar.Name = "BtnEliminar";
             BtnEliminar.Size = new Size(86, 31);
             BtnEliminar.TabIndex = 11;
@@ -378,7 +378,7 @@
             // 
             // txtIDEliminar
             // 
-            txtIDEliminar.Location = new Point(105, 28);
+            txtIDEliminar.Location = new Point(177, 50);
             txtIDEliminar.Name = "txtIDEliminar";
             txtIDEliminar.Size = new Size(170, 26);
             txtIDEliminar.TabIndex = 5;
@@ -386,9 +386,10 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(17, 28);
+            label13.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label13.Location = new Point(57, 50);
             label13.Name = "label13";
-            label13.Size = new Size(70, 20);
+            label13.Size = new Size(80, 23);
             label13.TabIndex = 0;
             label13.Text = "Ingrese ID";
             // 
