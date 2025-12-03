@@ -148,7 +148,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                     {
                         comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDEliminar.Text));
-                        if(comando.ExecuteNonQuery() > 0)
+                        if (comando.ExecuteNonQuery() > 0)
                         {
                             MessageBox.Show("Estudiante ELiminado");
                             txtIDEliminar.Clear();
@@ -161,6 +161,52 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 MessageBox.Show("Hubo un error: " + ex);
             }
         }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string texto = "";
+
+                for (int i = 0; i < DgvMostrar.Columns.Count; i++)
+                {
+                    texto += DgvMostrar.Columns[i].HeaderText;
+
+                    if (i < DgvMostrar.Columns.Count - 1)
+                        texto += ",";
+                }
+
+                texto += Environment.NewLine;
+
+                foreach (DataGridViewRow fila in DgvMostrar.Rows)
+                {
+                    if (!fila.IsNewRow)
+                    {
+                        for (int i = 0; i < DgvMostrar.Columns.Count; i++)
+                        {
+                            texto += fila.Cells[i].Value?.ToString();
+
+                            if (i < DgvMostrar.Columns.Count - 1)
+                                texto += ",";
+                        }
+
+                        texto += Environment.NewLine;
+                    }
+                }
+
+                string ruta = Application.StartupPath + "\\LsitadoEstudiantes.csv";
+
+                File.WriteAllText(ruta, texto);
+
+                MessageBox.Show("Archivo exportado correctamente en: " + ruta);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
     }
-    
+
 }

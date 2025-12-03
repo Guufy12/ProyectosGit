@@ -54,6 +54,7 @@
             txtIdEliminar = new TextBox();
             label7 = new Label();
             label8 = new Label();
+            btnExportar = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrarMaterias).BeginInit();
             groupBox1.SuspendLayout();
@@ -64,6 +65,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
+            groupBox2.Controls.Add(btnExportar);
             groupBox2.Controls.Add(BtnMostrar);
             groupBox2.Controls.Add(DgvMostrarMaterias);
             groupBox2.Font = new Font("Arial Narrow", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -330,6 +332,17 @@
             label8.Size = new Size(0, 23);
             label8.TabIndex = 1;
             // 
+            // btnExportar
+            // 
+            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Location = new Point(179, 196);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(116, 40);
+            btnExportar.TabIndex = 13;
+            btnExportar.Text = "Exportar";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
+            // 
             // FrmMateria
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -381,5 +394,6 @@
         private TextBox txtIdEliminar;
         private Label label7;
         private Label label8;
+        private Button btnExportar;
     }
 }

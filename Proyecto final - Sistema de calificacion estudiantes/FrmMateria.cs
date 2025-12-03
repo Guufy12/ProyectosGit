@@ -117,7 +117,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     string ComandoStr = "Delete From MATERIA Where Materia_ID = @ID";
                     using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
                     {
-                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIdEliminar.Text));                    
+                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIdEliminar.Text));
                         if (comando.ExecuteNonQuery() > 0)
                         {
                             MessageBox.Show("Materia Eliminada");
@@ -125,6 +125,52 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string texto = "";
+
+                for (int i = 0; i < DgvMostrarMaterias.Columns.Count; i++)
+                {
+                    texto += DgvMostrarMaterias.Columns[i].HeaderText;
+
+                    if (i < DgvMostrarMaterias.Columns.Count - 1)
+                        texto += ",";
+                }
+
+                texto += Environment.NewLine;
+
+                foreach (DataGridViewRow fila in DgvMostrarMaterias.Rows)
+                {
+                    if (!fila.IsNewRow)
+                    {
+                        for (int i = 0; i < DgvMostrarMaterias.Columns.Count; i++)
+                        {
+                            texto += fila.Cells[i].Value?.ToString();
+
+                            if (i < DgvMostrarMaterias.Columns.Count - 1)
+                                texto += ",";
+                        }
+
+                        texto += Environment.NewLine;
+                    }
+                }
+
+                string ruta = Application.StartupPath + "\\Archivo.csv";
+
+                File.WriteAllText(ruta, texto);
+
+                MessageBox.Show("Archivo exportado correctamente en: " + ruta);
+            }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error: " + ex);

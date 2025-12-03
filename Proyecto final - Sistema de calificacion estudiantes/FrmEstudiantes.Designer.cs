@@ -61,6 +61,7 @@
             BtnEliminar = new Button();
             txtIDEliminar = new TextBox();
             label13 = new Label();
+            btnExportar = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrar).BeginInit();
@@ -197,6 +198,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.White;
+            groupBox2.Controls.Add(btnExportar);
             groupBox2.Controls.Add(BtnMostrar);
             groupBox2.Controls.Add(DgvMostrar);
             groupBox2.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -210,7 +212,7 @@
             // BtnMostrar
             // 
             BtnMostrar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnMostrar.Location = new Point(393, 307);
+            BtnMostrar.Location = new Point(71, 307);
             BtnMostrar.Name = "BtnMostrar";
             BtnMostrar.Size = new Size(116, 43);
             BtnMostrar.TabIndex = 11;
@@ -393,6 +395,17 @@
             label13.TabIndex = 0;
             label13.Text = "Ingrese ID";
             // 
+            // btnExportar
+            // 
+            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Location = new Point(231, 310);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(116, 40);
+            btnExportar.TabIndex = 14;
+            btnExportar.Text = "Exportar";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
+            // 
             // FrmEstudiantes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -451,5 +464,6 @@
         private Button BtnEliminar;
         private TextBox txtIDEliminar;
         private Label label13;
+        private Button btnExportar;
     }
 }

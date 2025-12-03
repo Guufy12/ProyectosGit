@@ -87,6 +87,7 @@
             BtnEliminar = new Button();
             txtIDEliminar = new TextBox();
             label13 = new Label();
+            button3 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrarCalificaciones).BeginInit();
             groupBox2.SuspendLayout();
@@ -97,6 +98,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.White;
+            groupBox1.Controls.Add(button3);
             groupBox1.Controls.Add(BtnMostrarCalificaciones);
             groupBox1.Controls.Add(DgvMostrarCalificaciones);
             groupBox1.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -110,7 +112,7 @@
             // BtnMostrarCalificaciones
             // 
             BtnMostrarCalificaciones.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            BtnMostrarCalificaciones.Location = new Point(1200, 64);
+            BtnMostrarCalificaciones.Location = new Point(1200, 48);
             BtnMostrarCalificaciones.Name = "BtnMostrarCalificaciones";
             BtnMostrarCalificaciones.Size = new Size(116, 43);
             BtnMostrarCalificaciones.TabIndex = 11;
@@ -681,6 +683,17 @@
             label13.TabIndex = 0;
             label13.Text = "Ingrese ID";
             // 
+            // button3
+            // 
+            button3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(1200, 112);
+            button3.Name = "button3";
+            button3.Size = new Size(116, 40);
+            button3.TabIndex = 12;
+            button3.Text = "Exportar";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // FrmCalificaciones
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -765,5 +778,6 @@
         private Label label13;
         private Label lblEstudianteEliminado;
         private Label label14;
+        private Button button3;
     }
 }

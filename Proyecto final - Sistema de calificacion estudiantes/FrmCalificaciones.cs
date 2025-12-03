@@ -256,5 +256,51 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 MessageBox.Show("Hubo un error: " + ex);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               
+                    string texto = "";
+
+                    for (int i = 0; i < DgvMostrarCalificaciones.Columns.Count; i++)
+                    {
+                        texto += DgvMostrarCalificaciones.Columns[i].HeaderText;
+
+                        if (i < DgvMostrarCalificaciones.Columns.Count - 1)
+                            texto += ",";
+                    }
+
+                    texto += Environment.NewLine;
+
+                    foreach (DataGridViewRow fila in DgvMostrarCalificaciones.Rows)
+                    {
+                        if (!fila.IsNewRow)
+                        {
+                            for (int i = 0; i < DgvMostrarCalificaciones.Columns.Count; i++)
+                            {
+                                texto += fila.Cells[i].Value?.ToString();
+
+                                if (i < DgvMostrarCalificaciones.Columns.Count - 1)
+                                    texto += ",";
+                            }
+
+                            texto += Environment.NewLine;
+                        }
+                    }
+
+                    string ruta = Application.StartupPath + "\\Archivo.csv";
+
+                    File.WriteAllText(ruta, texto);
+
+                    MessageBox.Show("Archivo exportado correctamente en: " + ruta);
+                }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Hubo un error: " + ex);
+            }
+        }
     }
 }
