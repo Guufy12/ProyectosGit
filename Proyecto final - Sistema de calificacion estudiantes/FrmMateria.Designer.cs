@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
+            btnExportar = new Button();
             BtnMostrar = new Button();
             DgvMostrarMaterias = new DataGridView();
             groupBox1 = new GroupBox();
@@ -54,7 +55,6 @@
             txtIdEliminar = new TextBox();
             label7 = new Label();
             label8 = new Label();
-            btnExportar = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrarMaterias).BeginInit();
             groupBox1.SuspendLayout();
@@ -75,6 +75,17 @@
             groupBox2.TabIndex = 7;
             groupBox2.TabStop = false;
             groupBox2.Text = "Registro de Materias";
+            // 
+            // btnExportar
+            // 
+            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Location = new Point(179, 196);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(116, 40);
+            btnExportar.TabIndex = 13;
+            btnExportar.Text = "Exportar";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
             // 
             // BtnMostrar
             // 
@@ -125,6 +136,7 @@
             BtnLimpiar.TabIndex = 11;
             BtnLimpiar.Text = "LIMPIAR";
             BtnLimpiar.UseVisualStyleBackColor = true;
+            BtnLimpiar.Click += BtnLimpiar_Click;
             // 
             // BtnEnviar
             // 
@@ -331,17 +343,6 @@
             label8.Name = "label8";
             label8.Size = new Size(0, 23);
             label8.TabIndex = 1;
-            // 
-            // btnExportar
-            // 
-            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExportar.Location = new Point(179, 196);
-            btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(116, 40);
-            btnExportar.TabIndex = 13;
-            btnExportar.Text = "Exportar";
-            btnExportar.UseVisualStyleBackColor = true;
-            btnExportar.Click += btnExportar_Click;
             // 
             // FrmMateria
             // 

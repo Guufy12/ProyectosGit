@@ -25,46 +25,110 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
 
         private void BtnEnviar_Click(object sender, EventArgs e)
         {
-            try
+            string Mensaje = "Se detectaron los siguientes errores: \n\n";
+            bool error = false;
+            int id;
+            DateTime fechaIngresada = DtpNacimiento.Value;
+            DateTime fechaActual = DateTime.Now;
+            int edad = fechaActual.Year - fechaIngresada.Year;
+
+            if (string.IsNullOrEmpty(txtID.Text))
             {
-                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
-                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                Mensaje += "Id Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtNombreEstudiante.Text))
+            {
+                Mensaje += "Nombre Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtMatricula.Text))
+            {
+                Mensaje += "Matricula Vacia\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtCarrera.Text))
+            {
+                Mensaje += "Carrera Vacio \n";
+                error = true;
+            }
+
+            if (!int.TryParse(txtID.Text, out id))
+            {
+                Mensaje += "El Id debe ser un numero\n";
+                error = true;
+            }
+
+            if (edad < 15)
+            {
+                Mensaje += $"No es posible ingresar menores de 15. Tienes: {edad} años\n";
+                error = true;
+            }
+
+            if (edad > 100)
+            {
+                Mensaje += $"No es posible ingresar mayores de 100. Tienes: {edad} años\n";
+                error = true;
+            }
+
+            //lo ultimo
+            if (error)
+            {
+                MessageBox.Show(Mensaje);
+            }
+
+            else
+            {
+                try
                 {
-                    conexion.Open();
-                    string ComandoStr = "Insert into Estudiante(ESTUDIANTE_ID,NOMBRE, MATRICULA, FECHA_NACIMIENTO, CARRERA) Values(@ID, @NOMBRE, @MATRICULA, @FECHANACIMIENTO, @CARRERA) ";
-                    using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
+                    string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                    using (SqlConnection conexion = new SqlConnection(conexionStr))
                     {
-                        //Alternativa, eliminado en el debuggeo
-
-                        //comando.Parameters.Add("@ID", SqlDbType.Int).Value = Convert.ToInt64(txtID.Text);
-                        // comando.Parameters.Add("@NOMBRE", SqlDbType.VarChar).Value = txtNombreEstudiante.Text;
-                        //comando.Parameters.Add("@MATRICULA", SqlDbType.VarChar).Value = txtMatricula.Text;
-                        //comando.Parameters.Add("@FECHANACIMIENTO", SqlDbType.Date).Value = DtpNacimiento.Value;
-                        //comando.Parameters.Add("@CARRERA", SqlDbType.VarChar).Value = txtCarrera.Text;
-
-                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtID.Text));
-                        comando.Parameters.AddWithValue("@NOMBRE", txtNombreEstudiante.Text);
-                        comando.Parameters.AddWithValue("@MATRICULA", txtMatricula.Text);
-                        comando.Parameters.AddWithValue("@FECHANACIMIENTO", DtpNacimiento.Value);
-                        comando.Parameters.AddWithValue("@CARRERA", txtCarrera.Text);
-                        //comando.ExecuteNonQuery(); Da error, replica la PK
-
-                        if (comando.ExecuteNonQuery() > 0)
+                        conexion.Open();
+                        string ComandoStr = "Insert into Estudiante(ESTUDIANTE_ID,NOMBRE, MATRICULA, FECHA_NACIMIENTO, CARRERA) Values(@ID, @NOMBRE, @MATRICULA, @FECHANACIMIENTO, @CARRERA) ";
+                        using (SqlCommand comando = new SqlCommand(ComandoStr, conexion))
                         {
-                            MessageBox.Show("Estudiante Agregado");
-                            txtID.Clear();
-                            txtNombreEstudiante.Clear();
-                            txtMatricula.Clear();
-                            //DtpNacimiento.Value; //Trato de resetear el DTP
-                            txtCarrera.Clear();
-                        }
+                            comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtID.Text));
+                            comando.Parameters.AddWithValue("@NOMBRE", txtNombreEstudiante.Text);
+                            comando.Parameters.AddWithValue("@MATRICULA", txtMatricula.Text);//poner que el maximo sean 15 digitos
+                            comando.Parameters.AddWithValue("@FECHANACIMIENTO", DtpNacimiento.Value);
+                            comando.Parameters.AddWithValue("@CARRERA", txtCarrera.Text);
 
+                            if (comando.ExecuteNonQuery() > 0)
+                            {
+                                MessageBox.Show("Estudiante Agregado");
+                                txtID.Clear();
+                                txtNombreEstudiante.Clear();
+                                txtMatricula.Clear();
+                                txtCarrera.Clear();
+                            }
+
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error: " + ex);
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        MessageBox.Show("No se puede agregar registro. No hay relacion valida.");
+                    }
+                    if (ex.Number == 2627)
+                    {
+                        MessageBox.Show("No se puede agregar registro. Ya existe la llave primaria.");
+                    }
+                    if (ex.Number == 2628)
+                    {
+                        MessageBox.Show("No se puede agregar registro. el texto excede el maximo de digitos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error: " + ex);
+                }
             }
         }
 
@@ -77,7 +141,6 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 using (SqlConnection conexion = new SqlConnection(conexionStr))
                 {
                     conexion.Open();
-                    // MessageBox.Show("CONEXION EXITOSA"); Ya no es necesario
                     string comandoString = "SELECT * FROM ESTUDIANTE";
                     using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                     {
@@ -87,6 +150,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show("Hubo un error: " + ex);
@@ -98,67 +162,169 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             txtID.Clear();
             txtNombreEstudiante.Clear();
             txtMatricula.Clear();
-            DtpNacimiento.Refresh();
             txtCarrera.Clear();
         }
 
         private void BtnActualizar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
-                using (SqlConnection conexion = new SqlConnection(conexionStr))
-                {
-                    conexion.Open();
-                    string comandoString = $"Update Estudiante set Nombre = @Nombre, Matricula = @Matricula, Fecha_Nacimiento = @FechaNacimiento, Carrera = @Carrera Where ESTUDIANTE_ID = @ID";
-                    using (SqlCommand comando = new SqlCommand(comandoString, conexion))
-                    {
-                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDActualizar.Text));
-                        comando.Parameters.AddWithValue("@Nombre", txtNombreAct.Text);
-                        comando.Parameters.AddWithValue("@Matricula", txtMatriculaAct.Text);
-                        comando.Parameters.AddWithValue("@FechaNacimiento", DtpFechaAct.Value);
-                        comando.Parameters.AddWithValue("@Carrera", txtCarreraAct.Text);
-                        if (comando.ExecuteNonQuery() > 0)
-                        {
-                            MessageBox.Show("Estudiante Actualizado");
-                            txtID.Clear();
-                            txtNombreEstudiante.Clear();
-                            txtMatricula.Clear();
-                            txtCarrera.Clear();
-                        }
+            string Mensaje = "Se detectaron los siguientes errores: \n\n";
+            bool error = false;
+            int id;
+            DateTime fechaIngresada = DtpFechaAct.Value;
+            DateTime fechaActual = DateTime.Now;
+            int edad = fechaActual.Year - fechaIngresada.Year;
 
+            if (string.IsNullOrEmpty(txtIDActualizar.Text))
+            {
+                Mensaje += "Id Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtNombreAct.Text))
+            {
+                Mensaje += "Nombre Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtMatriculaAct.Text))
+            {
+                Mensaje += "Matricula Vacia\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtCarreraAct.Text))
+            {
+                Mensaje += "Cerrera Vacio \n";
+                error = true;
+            }
+
+            if (!int.TryParse(txtIDActualizar.Text, out id))
+            {
+                Mensaje += "El Id debe ser un numero\n";
+                error = true;
+            }
+            if (edad < 15)
+            {
+                Mensaje += $"No es posible ingresar menores de 15. Tienes: {edad} años\n";
+                error = true;
+            }
+
+            if (edad > 100)
+            {
+                Mensaje += $"No es posible ingresar mayores de 100. Tienes: {edad} años\n";
+                error = true;
+            }
+
+            if (error)
+            {
+                MessageBox.Show(Mensaje);
+            }
+            else
+            {
+                try
+                {
+                    string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                    using (SqlConnection conexion = new SqlConnection(conexionStr))
+                    {
+                        conexion.Open();
+                        string comandoString = $"Update Estudiante set Nombre = @Nombre, Matricula = @Matricula, Fecha_Nacimiento = @FechaNacimiento, Carrera = @Carrera Where ESTUDIANTE_ID = @ID";
+                        using (SqlCommand comando = new SqlCommand(comandoString, conexion))
+                        {
+                            comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDActualizar.Text));
+                            comando.Parameters.AddWithValue("@Nombre", txtNombreAct.Text);
+                            comando.Parameters.AddWithValue("@Matricula", txtMatriculaAct.Text);
+                            comando.Parameters.AddWithValue("@FechaNacimiento", DtpFechaAct.Value);
+                            comando.Parameters.AddWithValue("@Carrera", txtCarreraAct.Text);
+                            if (comando.ExecuteNonQuery() > 0)
+                            {
+                                MessageBox.Show("Estudiante Actualizado");
+                                txtID.Clear();
+                                txtNombreEstudiante.Clear();
+                                txtMatricula.Clear();
+                                txtCarrera.Clear();
+                            }
+
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error: " + ex);
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 207)
+                    {
+                        MessageBox.Show("No se puede actualizar el registro. No existe la columna o esta mal escrita.");
+                    }
+                    else if (ex.Number == 547)
+                    {
+                        MessageBox.Show("No se puede actualizar el registro. Error con la relacion de la Fk.");
+                    }
+                    else if (ex.Number == 2628)
+                    {
+                        MessageBox.Show("No se puede agregar registro. El texto excede el maximo de digitos");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error: " + ex);
+                }
             }
         }
 
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            string Mensaje = "Se detectaron los siguientes errores: \n\n";
+            bool error = false;
+            int id;
+
+            if (string.IsNullOrEmpty(txtIDEliminar.Text))
             {
-                string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
-                using (SqlConnection conexion = new SqlConnection(conexionStr))
+                Mensaje += "Id Vacio\n";
+                error = true;
+            }
+            if (!int.TryParse(txtIDEliminar.Text, out id))
+            {
+                Mensaje += "El Id debe ser un numero\n";
+                error = true;
+            }
+            if (error)
+            {
+                MessageBox.Show(Mensaje);
+            }
+
+            else
+            {
+
+                try
                 {
-                    conexion.Open();
-                    string comandoString = $"Delete Estudiante Where ESTUDIANTE_ID = @ID";
-                    using (SqlCommand comando = new SqlCommand(comandoString, conexion))
+                    string conexionStr = "Data Source= localhost;initial catalog=DBCalificacionesEstudiantes;integrated security=true;TrustServerCertificate=true";
+                    using (SqlConnection conexion = new SqlConnection(conexionStr))
                     {
-                        comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDEliminar.Text));
-                        if (comando.ExecuteNonQuery() > 0)
+                        conexion.Open();
+                        string comandoString = $"Delete Estudiante Where ESTUDIANTE_ID = @ID";
+                        using (SqlCommand comando = new SqlCommand(comandoString, conexion))
                         {
-                            MessageBox.Show("Estudiante ELiminado");
-                            txtIDEliminar.Clear();
+                            comando.Parameters.AddWithValue("@ID", Convert.ToInt64(txtIDEliminar.Text));
+                            if (comando.ExecuteNonQuery() > 0)
+                            {
+                                MessageBox.Show("Estudiante ELiminado");
+                                txtIDEliminar.Clear();
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Hubo un error: " + ex);
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        MessageBox.Show("No se puede eliminar registro. Otros depende de el.");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error: " + ex);
+                }
+
             }
         }
 
@@ -206,6 +372,14 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             {
                 MessageBox.Show("Hubo un error: " + ex);
             }
+        }
+
+        private void BtnLimpiarAct_Click(object sender, EventArgs e)
+        {
+            txtID.Clear();
+            txtNombreEstudiante.Clear();
+            txtMatricula.Clear();
+            txtCarrera.Clear();
         }
     }
 

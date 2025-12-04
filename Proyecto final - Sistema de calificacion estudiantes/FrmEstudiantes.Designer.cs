@@ -42,6 +42,7 @@
             txtNombreEstudiante = new TextBox();
             txtID = new TextBox();
             groupBox2 = new GroupBox();
+            btnExportar = new Button();
             BtnMostrar = new Button();
             DgvMostrar = new DataGridView();
             groupBox3 = new GroupBox();
@@ -61,7 +62,6 @@
             BtnEliminar = new Button();
             txtIDEliminar = new TextBox();
             label13 = new Label();
-            btnExportar = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrar).BeginInit();
@@ -209,6 +209,17 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "LISTADO DE ESTUDIANTES";
             // 
+            // btnExportar
+            // 
+            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExportar.Location = new Point(231, 310);
+            btnExportar.Name = "btnExportar";
+            btnExportar.Size = new Size(116, 40);
+            btnExportar.TabIndex = 14;
+            btnExportar.Text = "Exportar";
+            btnExportar.UseVisualStyleBackColor = true;
+            btnExportar.Click += btnExportar_Click;
+            // 
             // BtnMostrar
             // 
             BtnMostrar.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -268,6 +279,7 @@
             BtnLimpiarAct.TabIndex = 11;
             BtnLimpiarAct.Text = "LIMPIAR";
             BtnLimpiarAct.UseVisualStyleBackColor = true;
+            BtnLimpiarAct.Click += BtnLimpiarAct_Click;
             // 
             // BtnActualizar
             // 
@@ -394,17 +406,6 @@
             label13.Size = new Size(80, 23);
             label13.TabIndex = 0;
             label13.Text = "Ingrese ID";
-            // 
-            // btnExportar
-            // 
-            btnExportar.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExportar.Location = new Point(231, 310);
-            btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(116, 40);
-            btnExportar.TabIndex = 14;
-            btnExportar.Text = "Exportar";
-            btnExportar.UseVisualStyleBackColor = true;
-            btnExportar.Click += btnExportar_Click;
             // 
             // FrmEstudiantes
             // 

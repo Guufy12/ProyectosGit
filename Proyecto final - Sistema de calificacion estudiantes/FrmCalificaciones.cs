@@ -290,7 +290,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                         }
                     }
 
-                    string ruta = Application.StartupPath + "\\Archivo.csv";
+                    string ruta = Application.StartupPath + "\\ListaCalificaciones.csv";
 
                     File.WriteAllText(ruta, texto);
 
