@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            button3 = new Button();
             BtnMostrarCalificaciones = new Button();
             DgvMostrarCalificaciones = new DataGridView();
             groupBox2 = new GroupBox();
@@ -87,7 +88,6 @@
             BtnEliminar = new Button();
             txtIDEliminar = new TextBox();
             label13 = new Label();
-            button3 = new Button();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DgvMostrarCalificaciones).BeginInit();
             groupBox2.SuspendLayout();
@@ -108,6 +108,17 @@
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "LISTADO DE CALIFICACIONES";
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(1200, 112);
+            button3.Name = "button3";
+            button3.Size = new Size(116, 40);
+            button3.TabIndex = 12;
+            button3.Text = "Exportar";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // BtnMostrarCalificaciones
             // 
@@ -289,6 +300,7 @@
             BtnLimpiar.TabIndex = 11;
             BtnLimpiar.Text = "Borrar";
             BtnLimpiar.UseVisualStyleBackColor = true;
+            BtnLimpiar.Click += BtnLimpiar_Click;
             // 
             // BtnEnviar
             // 
@@ -534,6 +546,7 @@
             button1.TabIndex = 11;
             button1.Text = "Borrar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -682,17 +695,6 @@
             label13.Size = new Size(80, 23);
             label13.TabIndex = 0;
             label13.Text = "Ingrese ID";
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button3.Location = new Point(1200, 112);
-            button3.Name = "button3";
-            button3.Size = new Size(116, 40);
-            button3.TabIndex = 12;
-            button3.Text = "Exportar";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
             // 
             // FrmCalificaciones
             // 

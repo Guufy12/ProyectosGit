@@ -42,9 +42,19 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 Mensaje += "Nombre Vacio\n";
                 error = true;
             }
+            if (txtNombreEstudiante.Text.Any(char.IsDigit))
+            {
+                Mensaje += "Nombre Invalido. Agregue su nombre en texto\n";
+                error = true;
+            }
             if (string.IsNullOrEmpty(txtMatricula.Text))
             {
                 Mensaje += "Matricula Vacia\n";
+                error = true;
+            }
+            if (txtMatricula.Text.Length > 15)
+            {
+                Mensaje += "El tamaño maximo de caracteres de la matricula es 15\n";
                 error = true;
             }
             if (string.IsNullOrEmpty(txtCarrera.Text))
@@ -120,10 +130,6 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     {
                         MessageBox.Show("No se puede agregar registro. el texto excede el maximo de digitos");
                     }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -149,6 +155,14 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                         DgvMostrar.DataSource = tabla;
                     }
                 }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 207)
+                {
+                    MessageBox.Show("No se puede visualizar el registro. No existe la columna o esta mal escrita.");
+                }
+
             }
 
             catch (Exception ex)
@@ -194,6 +208,11 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 Mensaje += "Cerrera Vacio \n";
                 error = true;
             }
+            if (txtNombreAct.Text.Any(char.IsDigit))
+            {
+                Mensaje += "Nombre Invalido. Agregue su nombre en texto\n";
+                error = true;
+            }
 
             if (!int.TryParse(txtIDActualizar.Text, out id))
             {
@@ -235,10 +254,15 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                             if (comando.ExecuteNonQuery() > 0)
                             {
                                 MessageBox.Show("Estudiante Actualizado");
-                                txtID.Clear();
-                                txtNombreEstudiante.Clear();
-                                txtMatricula.Clear();
-                                txtCarrera.Clear();
+                                txtIDActualizar.Clear();
+                                txtNombreAct.Clear();
+                                txtMatriculaAct.Clear();
+                                txtCarreraAct.Clear();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Ningun registro Actualizado");
+
                             }
 
                         }
@@ -257,10 +281,6 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     else if (ex.Number == 2628)
                     {
                         MessageBox.Show("No se puede agregar registro. El texto excede el maximo de digitos");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
                     }
                 }
                 catch (Exception ex)
@@ -308,6 +328,11 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                             {
                                 MessageBox.Show("Estudiante ELiminado");
                                 txtIDEliminar.Clear();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No hubo registro ELiminado");
+
                             }
                         }
                     }
@@ -376,10 +401,10 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
 
         private void BtnLimpiarAct_Click(object sender, EventArgs e)
         {
-            txtID.Clear();
-            txtNombreEstudiante.Clear();
-            txtMatricula.Clear();
-            txtCarrera.Clear();
+            txtIDActualizar.Clear();
+            txtNombreAct.Clear();
+            txtMatriculaAct.Clear();
+            txtCarreraAct.Clear();
         }
     }
 

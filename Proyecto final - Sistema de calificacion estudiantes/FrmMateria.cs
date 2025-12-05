@@ -54,54 +54,58 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
 
         private void BtnEnviar_Click(object sender, EventArgs e)
         {
-          
+
             string Mensaje = "Se detectaron los siguientes errores: \n\n";
             bool error = false;
             int id;
             int creditos;
-            
-             
 
-                if (string.IsNullOrEmpty(txtIDMateria.Text))
-                {
-                    Mensaje += "campo Id Vacio\n";
-                    error = true;
-                }
-                if (string.IsNullOrEmpty(txtNombreMateria.Text))
-                {
-                    Mensaje += "Nombre de materia Vacio\n";
-                    error = true;
-                }
-                if (string.IsNullOrEmpty(txtCreditos.Text))
-                {
-                    Mensaje += "Numero de credios Vacia\n";
-                    error = true;
-                }
-                if (!int.TryParse(txtIDMateria.Text, out id))
-                {
-                    Mensaje += "El Id debe ser un numero\n";
-                    error = true;
-                }
-                if (!int.TryParse(txtCreditos.Text, out id))
-                {
-                    Mensaje += "El numero de creditos debe ser un numero\n";
-                    error = true;
-                }
+
+            if (string.IsNullOrEmpty(txtIDMateria.Text))
+            {
+                Mensaje += "campo Id Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtNombreMateria.Text))
+            {
+                Mensaje += "Nombre de materia Vacio\n";
+                error = true;
+            }
+            if (string.IsNullOrEmpty(txtCreditos.Text))
+            {
+                Mensaje += "Numero de credios Vacia\n";
+                error = true;
+            }
+            if (txtNombreMateria.Text.Any(char.IsDigit))
+            {
+                Mensaje += "Nombre Invalido. Agregue su nombre en texto\n";
+                error = true;
+            }
+            if (!int.TryParse(txtIDMateria.Text, out id))
+            {
+                Mensaje += "El Id de la materia debe ser un numero\n";
+                error = true;
+            }
+            if (!int.TryParse(txtCreditos.Text, out id))
+            {
+                Mensaje += "El numero de creditos debe ser un numero\n";
+                error = true;
+            }
             if (!int.TryParse(txtCreditos.Text, out creditos))
             {
                 Mensaje += "campo creditos invalido. Se debe ingresar un numero\n";
                 error = true;
             }
             if (creditos > 4)
-                {
-                    Mensaje += "El numero de creditos es muy grande, no debe ser mayor a 4\n";
-                    error = true;
-                }
-                if (creditos < 0)
-                {
-                    Mensaje += "El numero de creditos es negativo, el minimo es 0\n";
-                    error = true;
-                }
+            {
+                Mensaje += "El numero de creditos es muy grande, no debe ser mayor a 4\n";
+                error = true;
+            }
+            if (creditos < 0)
+            {
+                Mensaje += "El numero de creditos es negativo, el minimo es 0\n";
+                error = true;
+            }
 
             if (error)
             {
@@ -145,10 +149,6 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     {
                         MessageBox.Show("No se puede agregar registro. el texto excede el maximo de digitos");
                     }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
-                    }
                 }
                 catch (Exception ex)
                 {
@@ -166,32 +166,37 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
 
 
 
-            if (string.IsNullOrEmpty(txtIDMateria.Text))
+            if (string.IsNullOrEmpty(txtIdAct.Text))
             {
                 Mensaje += "campo Id Vacio\n";
                 error = true;
             }
-            if (string.IsNullOrEmpty(txtNombreMateria.Text))
+            if (string.IsNullOrEmpty(txtNombreAct.Text))
             {
                 Mensaje += "Nombre de materia Vacio\n";
                 error = true;
             }
-            if (string.IsNullOrEmpty(txtCreditos.Text))
+            if (string.IsNullOrEmpty(txtCreditosAct.Text))
             {
                 Mensaje += "Numero de credios Vacia\n";
                 error = true;
             }
-            if (!int.TryParse(txtIDMateria.Text, out id))
+            if (txtNombreAct.Text.Any(char.IsDigit))
+            {
+                Mensaje += "Nombre Invalido. Agregue su nombre en texto\n";
+                error = true;
+            }
+            if (!int.TryParse(txtIdAct.Text, out id))
             {
                 Mensaje += "El Id debe ser un numero\n";
                 error = true;
             }
-            if (!int.TryParse(txtCreditos.Text, out id))
+            if (!int.TryParse(txtCreditosAct.Text, out creditos))
             {
                 Mensaje += "El numero de creditos debe ser un numero\n";
                 error = true;
             }
-            if (!int.TryParse(txtCreditos.Text, out creditos))
+            if (!int.TryParse(txtCreditosAct.Text, out creditos))
             {
                 Mensaje += "campo creditos invalido. Se debe ingresar un numero\n";
                 error = true;
@@ -228,9 +233,9 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                             if (comando.ExecuteNonQuery() > 0)
                             {
                                 MessageBox.Show("Materia Actualizada");
-                                txtIDMateria.Clear();
-                                txtNombreMateria.Clear();
-                                txtCreditos.Clear();
+                                txtIdAct.Clear();
+                                txtNombreAct.Clear();
+                                txtCreditosAct.Clear();
                             }
                             else
                             {
@@ -243,7 +248,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                 {
                     if (ex.Number == 547)
                     {
-                        MessageBox.Show("No se puede agregar registro. No hay relacion valida.");
+                        MessageBox.Show("No se puede agregar registro. No hay relacion valida con la Fk.");
                     }
                     if (ex.Number == 2627)
                     {
@@ -253,10 +258,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     {
                         MessageBox.Show("No se puede agregar registro. el texto excede el maximo de digitos");
                     }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
-                    }
+    
                 }
                 catch (Exception ex)
                 {
@@ -318,10 +320,6 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     {
                         MessageBox.Show("No se puede eliminar el registro. No existe la columna o esta mal escrita.");
                     }
-                    else
-                    {
-                        MessageBox.Show("Hubo un error con la base de datos: " + ex);
-                    }
 
                 }
                 catch (Exception ex)
@@ -382,6 +380,13 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             txtIDMateria.Clear();
             txtNombreMateria.Clear();
             txtCreditos.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtIdAct.Clear();
+            txtNombreAct.Clear();
+            txtCreditosAct.Clear();
         }
     }
 }
