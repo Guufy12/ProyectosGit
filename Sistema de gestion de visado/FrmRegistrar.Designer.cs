@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            btnPago = new Button();
             label6 = new Label();
-            textBox4 = new TextBox();
+            txttelefono = new TextBox();
             label5 = new Label();
-            textBox3 = new TextBox();
+            txtpasaporte = new TextBox();
             label3 = new Label();
             txtcedula = new TextBox();
             label4 = new Label();
@@ -42,7 +43,6 @@
             txtcontraseña = new TextBox();
             label1 = new Label();
             txtCorreo = new TextBox();
-            btnPago = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,9 +51,9 @@
             groupBox1.BackColor = Color.FromArgb(0, 64, 64);
             groupBox1.Controls.Add(btnPago);
             groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(textBox4);
+            groupBox1.Controls.Add(txttelefono);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(textBox3);
+            groupBox1.Controls.Add(txtpasaporte);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(txtcedula);
             groupBox1.Controls.Add(label4);
@@ -72,6 +72,17 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Registrar usuario";
             // 
+            // btnPago
+            // 
+            btnPago.ForeColor = Color.Teal;
+            btnPago.Location = new Point(302, 296);
+            btnPago.Name = "btnPago";
+            btnPago.Size = new Size(188, 50);
+            btnPago.TabIndex = 13;
+            btnPago.Text = "Realizar pago";
+            btnPago.UseVisualStyleBackColor = true;
+            btnPago.Click += btnPago_Click;
+            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -82,12 +93,12 @@
             label6.Text = "Telefono";
             label6.Click += label6_Click;
             // 
-            // textBox4
+            // txttelefono
             // 
-            textBox4.Location = new Point(292, 152);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(207, 30);
-            textBox4.TabIndex = 11;
+            txttelefono.Location = new Point(292, 152);
+            txttelefono.Name = "txttelefono";
+            txttelefono.Size = new Size(207, 30);
+            txttelefono.TabIndex = 11;
             // 
             // label5
             // 
@@ -98,12 +109,12 @@
             label5.TabIndex = 10;
             label5.Text = "Pasaporte";
             // 
-            // textBox3
+            // txtpasaporte
             // 
-            textBox3.Location = new Point(25, 152);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(207, 30);
-            textBox3.TabIndex = 9;
+            txtpasaporte.Location = new Point(25, 152);
+            txtpasaporte.Name = "txtpasaporte";
+            txtpasaporte.Size = new Size(207, 30);
+            txtpasaporte.TabIndex = 9;
             // 
             // label3
             // 
@@ -183,17 +194,6 @@
             txtCorreo.TabIndex = 0;
             txtCorreo.Text = "correo@ejemplo.com";
             // 
-            // btnPago
-            // 
-            btnPago.ForeColor = Color.Teal;
-            btnPago.Location = new Point(302, 296);
-            btnPago.Name = "btnPago";
-            btnPago.Size = new Size(188, 50);
-            btnPago.TabIndex = 13;
-            btnPago.Text = "Realizar pago";
-            btnPago.UseVisualStyleBackColor = true;
-            btnPago.Click += btnPago_Click;
-            // 
             // FrmRegistrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -221,9 +221,9 @@
         private Label label4;
         private TextBox txtnombre;
         private Label label6;
-        private TextBox textBox4;
+        private TextBox txttelefono;
         private Label label5;
-        private TextBox textBox3;
+        private TextBox txtpasaporte;
         private Button btnPago;
     }
 }

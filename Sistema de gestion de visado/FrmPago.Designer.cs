@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            lblMonto = new Label();
+            label6 = new Label();
+            txtImpuestos = new TextBox();
+            cbImpuestos = new CheckBox();
+            cbCItaconsular = new CheckBox();
+            cbCitainicial = new CheckBox();
+            label2 = new Label();
+            txtcvc = new TextBox();
             btnPago = new Button();
             label5 = new Label();
             txtfvencimiento = new TextBox();
@@ -38,14 +46,6 @@
             txtnombre = new TextBox();
             label1 = new Label();
             txtCorreo = new TextBox();
-            label2 = new Label();
-            txtcvc = new TextBox();
-            cbCitainicial = new CheckBox();
-            cbCItaconsular = new CheckBox();
-            cbImpuestos = new CheckBox();
-            txtImpuestos = new TextBox();
-            label6 = new Label();
-            lblMonto = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,6 +78,78 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Realizacion de pago correspondientes";
             // 
+            // lblMonto
+            // 
+            lblMonto.AutoSize = true;
+            lblMonto.Location = new Point(489, 294);
+            lblMonto.Name = "lblMonto";
+            lblMonto.Size = new Size(20, 23);
+            lblMonto.TabIndex = 21;
+            lblMonto.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(334, 294);
+            label6.Name = "label6";
+            label6.Size = new Size(149, 23);
+            label6.TabIndex = 20;
+            label6.Text = "Monto a pagar: ";
+            // 
+            // txtImpuestos
+            // 
+            txtImpuestos.Location = new Point(525, 169);
+            txtImpuestos.Name = "txtImpuestos";
+            txtImpuestos.Size = new Size(100, 30);
+            txtImpuestos.TabIndex = 19;
+            // 
+            // cbImpuestos
+            // 
+            cbImpuestos.AutoSize = true;
+            cbImpuestos.Location = new Point(334, 171);
+            cbImpuestos.Name = "cbImpuestos";
+            cbImpuestos.Size = new Size(176, 27);
+            cbImpuestos.TabIndex = 18;
+            cbImpuestos.Text = "Impuestos extras";
+            cbImpuestos.UseVisualStyleBackColor = true;
+            // 
+            // cbCItaconsular
+            // 
+            cbCItaconsular.AutoSize = true;
+            cbCItaconsular.Location = new Point(335, 122);
+            cbCItaconsular.Name = "cbCItaconsular";
+            cbCItaconsular.Size = new Size(144, 27);
+            cbCItaconsular.TabIndex = 17;
+            cbCItaconsular.Text = "Cita consular";
+            cbCItaconsular.UseVisualStyleBackColor = true;
+            // 
+            // cbCitainicial
+            // 
+            cbCitainicial.AutoSize = true;
+            cbCitainicial.Location = new Point(334, 71);
+            cbCitainicial.Name = "cbCitainicial";
+            cbCitainicial.Size = new Size(124, 27);
+            cbCitainicial.TabIndex = 16;
+            cbCitainicial.Text = "Cita inicial";
+            cbCitainicial.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(24, 356);
+            label2.Name = "label2";
+            label2.Size = new Size(123, 23);
+            label2.TabIndex = 15;
+            label2.Text = "Codigo CVC";
+            // 
+            // txtcvc
+            // 
+            txtcvc.Font = new Font("Arial", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtcvc.Location = new Point(28, 389);
+            txtcvc.Name = "txtcvc";
+            txtcvc.Size = new Size(78, 26);
+            txtcvc.TabIndex = 14;
+            // 
             // btnPago
             // 
             btnPago.ForeColor = Color.Teal;
@@ -87,6 +159,7 @@
             btnPago.TabIndex = 13;
             btnPago.Text = "Realizar pago";
             btnPago.UseVisualStyleBackColor = true;
+            btnPago.Click += btnPago_Click;
             // 
             // label5
             // 
@@ -154,78 +227,6 @@
             txtCorreo.Name = "txtCorreo";
             txtCorreo.Size = new Size(207, 26);
             txtCorreo.TabIndex = 0;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(24, 356);
-            label2.Name = "label2";
-            label2.Size = new Size(123, 23);
-            label2.TabIndex = 15;
-            label2.Text = "Codigo CVC";
-            // 
-            // txtcvc
-            // 
-            txtcvc.Font = new Font("Arial", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            txtcvc.Location = new Point(28, 389);
-            txtcvc.Name = "txtcvc";
-            txtcvc.Size = new Size(78, 26);
-            txtcvc.TabIndex = 14;
-            // 
-            // cbCitainicial
-            // 
-            cbCitainicial.AutoSize = true;
-            cbCitainicial.Location = new Point(334, 71);
-            cbCitainicial.Name = "cbCitainicial";
-            cbCitainicial.Size = new Size(124, 27);
-            cbCitainicial.TabIndex = 16;
-            cbCitainicial.Text = "Cita inicial";
-            cbCitainicial.UseVisualStyleBackColor = true;
-            // 
-            // cbCItaconsular
-            // 
-            cbCItaconsular.AutoSize = true;
-            cbCItaconsular.Location = new Point(335, 122);
-            cbCItaconsular.Name = "cbCItaconsular";
-            cbCItaconsular.Size = new Size(144, 27);
-            cbCItaconsular.TabIndex = 17;
-            cbCItaconsular.Text = "Cita consular";
-            cbCItaconsular.UseVisualStyleBackColor = true;
-            // 
-            // cbImpuestos
-            // 
-            cbImpuestos.AutoSize = true;
-            cbImpuestos.Location = new Point(334, 171);
-            cbImpuestos.Name = "cbImpuestos";
-            cbImpuestos.Size = new Size(176, 27);
-            cbImpuestos.TabIndex = 18;
-            cbImpuestos.Text = "Impuestos extras";
-            cbImpuestos.UseVisualStyleBackColor = true;
-            // 
-            // txtImpuestos
-            // 
-            txtImpuestos.Location = new Point(525, 169);
-            txtImpuestos.Name = "txtImpuestos";
-            txtImpuestos.Size = new Size(100, 30);
-            txtImpuestos.TabIndex = 19;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(334, 294);
-            label6.Name = "label6";
-            label6.Size = new Size(149, 23);
-            label6.TabIndex = 20;
-            label6.Text = "Monto a pagar: ";
-            // 
-            // lblMonto
-            // 
-            lblMonto.AutoSize = true;
-            lblMonto.Location = new Point(489, 294);
-            lblMonto.Name = "lblMonto";
-            lblMonto.Size = new Size(20, 23);
-            lblMonto.TabIndex = 21;
-            lblMonto.Text = "0";
             // 
             // FrmPago
             // 

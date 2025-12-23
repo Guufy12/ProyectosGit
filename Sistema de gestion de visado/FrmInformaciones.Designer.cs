@@ -39,9 +39,9 @@
             cbVisas.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cbVisas.FormattingEnabled = true;
             cbVisas.Items.AddRange(new object[] { "Visa de Turista (B1/B2, Schengen Tipo C)", "Visa de Estudiante (F-1, J-1)", "Visa de Trabajo Temporal (H-1B, H-2A)", "Visa de Inmigrante por Familia (IR, F-2A/B, F-3, F-4)", "Visa de Negocios (B1)", "Visa de Tránsito (C)", "Visa de Residente Permanente (Green Card)", "Visa de Inversionista (E-2, EB-5)", "Visa de Cónyuge/Prometido(a) (K-1)", "Visa Diplomática/Oficial (A, G)" });
-            cbVisas.Location = new Point(241, 194);
+            cbVisas.Location = new Point(218, 190);
             cbVisas.Name = "cbVisas";
-            cbVisas.Size = new Size(278, 29);
+            cbVisas.Size = new Size(333, 29);
             cbVisas.TabIndex = 0;
             // 
             // label1
@@ -79,6 +79,7 @@
             button2.TabIndex = 3;
             button2.Text = "Solicitar";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // FrmInformaciones
             // 
