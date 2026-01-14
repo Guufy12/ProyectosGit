@@ -19,57 +19,40 @@ class Program
         Random aleatorio = new Random();
         for (int i = 0; i < vectores.Length; i++)
         {
-            vectores[i] = aleatorio.Next(1,101);
+            vectores[i] = aleatorio.Next(1, 101);
         }
-        /*
-        for (int i = 0;i < vectores.Length; i++)
-        {
-            Console.Write(vectores[i] + "\t");
-        }
-        */
         Console.WriteLine();
         Ordenar(vectores);
 
     }
     static void Ordenar(int[] arrayNum)
     {
-        //int[] ordenado = new int[arrayNum.Length];
         Console.WriteLine("Array Original: ");
         foreach (int numero in arrayNum) {
             Console.Write(numero + " ");
         }
         Console.WriteLine();
-        int num = arrayNum[0];
-        int posicion = 0;
+
         for (int i = 0; i < arrayNum.Length - 1; i++)
-        {           
-                for (int j = 1; j < arrayNum.Length - 1; j++)
-                {               
-                if (num > arrayNum[j])
+        {
+            for (int j = 0; j < arrayNum.Length - 1; j++)
+            {
+                if (arrayNum[j] > arrayNum[j + 1])
                 {
-                    num = arrayNum[j];
-                    posicion = j;
-
-                    int temp = arrayNum[i];
-                    arrayNum[j] = num;
-                    arrayNum[posicion] = temp;
+                    int temp = arrayNum[j];
+                    arrayNum[j] = arrayNum[j + 1];
+                    arrayNum[j + 1] = temp;
                 }
-
             }
 
-
-            /*int temp = arrayNum[i];
-            arrayNum[i] = num;
-            //num = temp;
-            arrayNum[posicion] = temp;
-            //ordenado[i] = num;
-            */
         }
-        Console.WriteLine("Array Ordenado: ");
+    Console.WriteLine("Array Ordenado: ");
         foreach (int numero in arrayNum)
         {
-        Console.Write(numero + " ");
+            Console.Write(numero + " ");
         }
+}
+        
 
-    }
+    
 }
