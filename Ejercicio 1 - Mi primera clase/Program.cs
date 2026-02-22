@@ -7,9 +7,10 @@ class Program
         Persona persona1 = new Persona("erick", 18);
         Persona persona2 = new Persona("Mia", 12);
 
-        Console.WriteLine("Hola " + persona1.Nombre+ " tienes " + persona1.Edad + " anyos");
-        Console.WriteLine("Hola " + persona2.Nombre + " tienes " + persona2.Edad + " anyos");
-
+        //Console.WriteLine("Hola " + persona1.Nombre+ " tienes " + persona1.Edad + " anyos");
+        //Console.WriteLine("Hola " + persona2.Nombre + " tienes " + persona2.Edad + " anyos");
+        persona1.Saludar();
+        persona2.Saludar();
     }
 }
 class Persona
@@ -21,5 +22,10 @@ class Persona
     {
         Nombre = nombre;
         Edad = edad;
+    }
+
+    public void Saludar()
+    {
+        Console.WriteLine($"Hola {Nombre}, tienes {Edad} anyos de edad");
     }
 }
