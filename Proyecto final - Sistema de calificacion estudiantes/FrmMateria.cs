@@ -258,7 +258,7 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
                     {
                         MessageBox.Show("No se puede agregar registro. el texto excede el maximo de digitos");
                     }
-    
+
                 }
                 catch (Exception ex)
                 {
@@ -387,6 +387,11 @@ namespace Proyecto_final___Sistema_de_calificacion_estudiantes
             txtIdAct.Clear();
             txtNombreAct.Clear();
             txtCreditosAct.Clear();
+        }
+
+        private void txtIdAct_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -262,6 +262,7 @@
             txtIdAct.Name = "txtIdAct";
             txtIdAct.Size = new Size(170, 27);
             txtIdAct.TabIndex = 5;
+            txtIdAct.TextChanged += txtIdAct_TextChanged;
             // 
             // label4
             // 
